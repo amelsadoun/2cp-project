@@ -1,10 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import BackScreen from "../components/BackScreen";
-import { View, Text } from "react-native";
-import axios from "axios";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DeviceInfoScreen from "./DeviceInfoScreen";
+import DevicesList from "../components/DevicesList";
+
+const darkBlue = "#2F4062";
+const SecondStack = createNativeStackNavigator();
 
 export default function HomeScreen() {
-  const [haja, setHaja] = useState({});
+  return (
+    <SecondStack.Navigator
+      initialRouteName="DevicesList"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <SecondStack.Screen
+        name="DevicesList"
+        component={DevicesList}
+        options={{ title: "Devices" }}
+      />
+      <SecondStack.Screen
+        name="DeviceDetails"
+        component={DeviceInfoScreen}
+        options={{ title: "Device Details" }}
+      />
+    </SecondStack.Navigator>
+  );
+}
+
+
+
+ /* const [haja, setHaja] = useState({});
   useEffect(() => {
     async function getAllHajas() {
       try {
@@ -17,33 +46,6 @@ export default function HomeScreen() {
     }
     getAllHajas();
   }, []);
-
   
-
-
-  return (
-    <BackScreen>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            fontWeight: "bold",
-            //fontFamily: "nexa",
-            fontSize: 30,
-            alignSelf: "center",
-          }}
-        >
-          Homepage
-        </Text>
-        <Text>data: {haja.data?.users[0].email}</Text>
-      </View>
-    </BackScreen>
-  );
-}
+  console.log(haja.data?.users[0].email)
+  */

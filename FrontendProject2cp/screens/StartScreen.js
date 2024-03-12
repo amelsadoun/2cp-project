@@ -1,5 +1,4 @@
 import { Pressable, Text, View, ImageBackground } from "react-native";
-import { useFonts } from "expo-font";
 import LogoBig from "../icons/LogoBig";
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
@@ -41,7 +40,7 @@ export default function StartScreen({ navigation }) {
             flex: 1,
             resizeMode: "cover",
             display: "flex",
-          gap: 30,
+          gap: 20,
             flexDirection: "column",
             alignItems: "center",
             alignContent: "center",
@@ -49,7 +48,9 @@ export default function StartScreen({ navigation }) {
         >
           <Text
             style={{
-              fontSize: 40,
+              fontSize: 36,
+              fontFamily: "Poppins",
+              color: darkBlue
             }}
           >
             Welcome to
@@ -58,7 +59,8 @@ export default function StartScreen({ navigation }) {
           <Text
             style={{
               fontSize: 25,
-              fontFamily: "nexa",
+              fontFamily: "Poppins",
+              fontWeight: "200",
               textAlign: "center",
               marginHorizontal: "13%",
             }}

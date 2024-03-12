@@ -1,18 +1,13 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  Pressable,
-} from "react-native";
+import { View, Pressable } from "react-native";
+import { Svg } from "react-native-svg";
 import React from "react";
 import Devices from "../icons/Devices";
 import Home from "../icons/Home";
 import User from "../icons/User";
 import NotificationsIcon from "../icons/Notifications";
-import ActiveBackground from "./ActiveBackground";
 
 const darkBlue = "#2F4062";
+const darkerBlue = "#212c44";
 
 function MyTabBar({ state, descriptors, navigation }) {
   return (
@@ -25,6 +20,8 @@ function MyTabBar({ state, descriptors, navigation }) {
         alignItems: "center",
         justifyContent: "space-around",
         paddingVertical: 14,
+        borderTopLeftRadius:20,
+        borderTopRightRadius:20,
         overflow: "hidden",
       }}
     >
@@ -71,11 +68,26 @@ function MyTabBar({ state, descriptors, navigation }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              backgroundColor: isFocused ? darkerBlue : "transparent",
+              flex: 1,
+              alignContent: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 9,
+              marginHorizontal: 15,
+              aspectRatio: 1,
+              borderRadius: 100,
             }}
           >
-            <ActiveBackground isFocused={isFocused}>
+            <Svg
+              width={27}
+              height={28}
+              viewBox="0 0 27 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <Icon name={label}></Icon>
-            </ActiveBackground>
+            </Svg>
           </Pressable>
         );
       })}

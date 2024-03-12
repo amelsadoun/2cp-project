@@ -1,11 +1,9 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { Text, FlatList, TouchableOpacity, Image } from "react-native";
 import BackScreen from "../components/BackScreen";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DeviceInfoScreen from "../screens/DeviceInfoScreen";
 
 const darkBlue = "#2F4062";
+const white = "#FEFEFF";
 
 export default function DevicesList({ navigation }) {
   var devicesData = [
@@ -32,16 +30,47 @@ export default function DevicesList({ navigation }) {
         padding: 20,
         maxWidth: 176,
         aspectRatio: 1,
-        marginVertical: 12,
-        marginHorizontal: 12,
+        margin: 5,
         borderRadius: 25,
         shadowColor: "#000",
         shadowOffset: { width: 3, height: 3 },
         shadowOpacity: 0.3,
         shadowRadius: 10,
+        display: "flex",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 10,
       }}
     >
-      {item.name != "Add" ? <Text>{item.name}</Text> : <Text>Add</Text>}
+      {item.name != "Add" ? (
+        <>
+          <Image source={require("../assets/Light.png")}></Image>
+          <Text
+            style={{
+              color: white,
+              fontSize: 18,
+              fontFamily: "Poppins",
+            }}
+          >
+            {item.name}
+          </Text>
+        </>
+      ) : (
+        <>
+          <Image source={require("../assets/AddIcon.png")}></Image>
+          <Text
+            style={{
+              color: white,
+              fontSize: 18,
+              fontFamily: "Poppins",
+              marginVertical:4
+            }}
+          >
+            Add
+          </Text>
+        </>
+      )}
     </TouchableOpacity>
   );
 
@@ -51,18 +80,17 @@ export default function DevicesList({ navigation }) {
         ListHeaderComponent={() => (
           <Text
             style={{
-              fontWeight: "bold",
-              //fontFamily: "nexa",
-              fontSize: 25,
-              alignSelf: "center",
-              paddingVertical: 10
+              fontFamily: "Poppins",
+              fontSize: 23,
+              marginLeft: 10,
+              paddingVertical: 10,
             }}
           >
-            Devices
+            Recent Devices
           </Text>
         )}
         numColumns={2}
-        style={{ marginHorizontal: 10 }}
+        style={{ paddingHorizontal: 18 }}
         data={[...devicesData, { id: 8, name: "Add" }]}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
