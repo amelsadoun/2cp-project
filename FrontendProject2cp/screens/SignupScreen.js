@@ -8,6 +8,7 @@ import {
   View,
   ImageBackground,
 } from "react-native";
+import { useFonts } from "expo-font";
 import Logo from "../icons/Logo";
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
@@ -15,6 +16,21 @@ const yellow = "#F3F0A6";
 
 function SignupScreen({ navigation }) {
   const [text, setText] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+  const [fontsLoaded] = useFonts({
+    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
+    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
+    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
+    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
+    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
+    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
+    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
+    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
+  });
 
   return (
     <View
@@ -84,106 +100,39 @@ function SignupScreen({ navigation }) {
             textAlign: "center",
             marginHorizontal: 60,
             color: white,
-            fontWeight: "medium",
+            fontFamily: "MontserratBold",
             marginVertical: 10,
+            opacity: 0.75,
           }}
         >
           Create and account and backup all your devices
         </Text>
-        <PaperProvider>
-          <TextInput
-            mode="outlined"
-            style={{
-              backgroundColor: darkBlue,
-              paddingHorizontal: 10,
-              width: 290,
-            }}
-            textColor={white}
-            placeholderTextColor={white}
-            activeOutlineColor={yellow}
-            outlineStyle={{
-              borderRadius: 15,
-              borderColor: "white",
-              borderWidth: 1.5,
-              borderStyle: "solid",
-            }}
-            value={text}
-            onChangeText={(text) => setText(text)}
-            label="Email"
-            right={<TextInput.Icon icon="email" />}
-          />
-        </PaperProvider>
-        <PaperProvider>
-          <TextInput
-            mode="outlined"
-            style={{
-              backgroundColor: darkBlue,
-              paddingHorizontal: 10,
-              width: 290,
-            }}
-            textColor={white}
-            placeholderTextColor={white}
-            activeOutlineColor={yellow}
-            outlineStyle={{
-              borderRadius: 15,
-              border: "1.5px solid white",
-              borderColor: "white",
-              borderWidth: 1.5,
-              borderStyle: "solid",
-            }}
-            value={text}
-            onChangeText={(text) => setText(text)}
-            label="Phone number"
-            right={<TextInput.Icon icon="phone" />}
-          />
-        </PaperProvider>
-        <PaperProvider>
-          <TextInput
-            mode="outlined"
-            style={{
-              backgroundColor: darkBlue,
-              paddingHorizontal: 10,
-              width: 290,
-            }}
-            textColor={white}
-            placeholderTextColor={white}
-            activeOutlineColor={yellow}
-            outlineStyle={{
-              borderRadius: 15,
-              border: "1.5px solid white",
-              borderColor: "white",
-              borderWidth: 1.5,
-              borderStyle: "solid",
-            }}
-            value={text}
-            onChangeText={(text) => setText(text)}
-            label="Password"
-            right={<TextInput.Icon icon="lock" />}
-          />
-        </PaperProvider>
-        <PaperProvider>
-          <TextInput
-            mode="outlined"
-            style={{
-              backgroundColor: darkBlue,
-              paddingHorizontal: 10,
-              width: 290,
-            }}
-            textColor={white}
-            placeholderTextColor={white}
-            activeOutlineColor={yellow}
-            outlineStyle={{
-              borderRadius: 15,
-              borderColor: white,
-              borderWidth: 1.5,
-              borderStyle: "solid",
-            }}
-            value={text}
-            onChangeText={(text) => setText(text)}
-            label="Confirm password"
-            right={<TextInput.Icon icon="lock" />}
-          />
-        </PaperProvider>
+        <SignupInput
+          label="Email"
+          icon="email"
+          value={email}
+          onChange={(email) => setEmail(email)}
+        ></SignupInput>
+        <SignupInput
+          label="Phone number"
+          icon="phone"
+          value={phoneNumber}
+          onChange={(phoneNumber) => setPhoneNumber(phoneNumber)}
+        ></SignupInput>
+        <SignupInput
+          label="Password"
+          icon="lock"
+          value={password}
+          onChange={(password) => setPassword(password)}
+        ></SignupInput>
+        <SignupInput
+          label="Confirm password"
+          icon="lock"
+          value={passwordConfirmation}
+          onChange={(passwordConfirmation) =>
+            setPasswordConfirmation(passwordConfirmation)
+          }
+        ></SignupInput>
         <Pressable
           style={{
             backgroundColor: white,
@@ -224,3 +173,31 @@ function SignupScreen({ navigation }) {
 }
 
 export default SignupScreen;
+
+function SignupInput({ label, icon, onChange, value }) {
+  return (
+    <PaperProvider>
+      <TextInput
+        mode="outlined"
+        style={{
+          backgroundColor: darkBlue,
+          paddingHorizontal: 10,
+          width: 290,
+        }}
+        textColor={white}
+        placeholderTextColor={white}
+        activeOutlineColor={yellow}
+        outlineColor={white}
+        outlineStyle={{
+          borderRadius: 15,
+          borderWidth: 1.5,
+          borderStyle: "solid",
+        }}
+        value={value}
+        onChangeText={onChange}
+        label={label}
+        right={<TextInput.Icon icon={icon} color={white} />}
+      />
+    </PaperProvider>
+  );
+}

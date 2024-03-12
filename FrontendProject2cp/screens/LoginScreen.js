@@ -8,6 +8,8 @@ import {
   View,
   ImageBackground,
 } from "react-native";
+
+import { useFonts } from "expo-font";
 import Logo from "../icons/Logo";
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
@@ -15,6 +17,16 @@ const yellow = "#F3F0A6";
 
 function LoginScreen({ navigation }) {
   const [text, setText] = useState("");
+  const [fontsLoaded] = useFonts({
+    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
+    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
+    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
+    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
+    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
+    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
+    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
+    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
+  });
 
   return (
     <View
@@ -83,10 +95,11 @@ function LoginScreen({ navigation }) {
           style={{
             fontSize: 18,
             textAlign: "center",
-            marginHorizontal: 60,
-            marginVertical: 10,
+            marginHorizontal: 70,
+            marginVertical: 12,
             color: white,
-            fontWeight: "medium",
+            opacity: 0.75,
+            fontFamily: "MontserratLight",
           }}
         >
           Sign into you account and manage your device & accessory
@@ -159,7 +172,7 @@ function LoginScreen({ navigation }) {
           <Text
             style={{
               fontSize: 18,
-              fontWeight: "bold",
+              fontFamily:"MontserratBold",
             }}
           >
             Log in
@@ -170,6 +183,7 @@ function LoginScreen({ navigation }) {
             style={{
               color: yellow,
               textDecorationLine: "underline",
+              fontFamily: "MontserratExtraLight",
             }}
           >
             don't have an account? Sign up
