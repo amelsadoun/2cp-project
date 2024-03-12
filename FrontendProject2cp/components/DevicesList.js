@@ -1,11 +1,26 @@
 import React from "react";
 import { Text, FlatList, TouchableOpacity, Image } from "react-native";
 import BackScreen from "../components/BackScreen";
+import { useFonts } from "expo-font";
+
 
 const darkBlue = "#2F4062";
 const white = "#FEFEFF";
 
 export default function DevicesList({ navigation }) {
+
+  const [fontsLoaded] = useFonts({
+    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
+    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
+    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
+    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
+    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
+    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
+    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
+    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
+  });
+
+  
   var devicesData = [
     { id: 1, name: "Device 1" },
     { id: 6, name: "Device 6" },
@@ -40,7 +55,7 @@ export default function DevicesList({ navigation }) {
         alignContent: "center",
         alignItems: "center",
         justifyContent: "center",
-        gap: 10,
+        gap: 16,
       }}
     >
       {item.name != "Add" ? (
@@ -50,7 +65,7 @@ export default function DevicesList({ navigation }) {
             style={{
               color: white,
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "MontserratMedium",
             }}
           >
             {item.name}
@@ -63,11 +78,11 @@ export default function DevicesList({ navigation }) {
             style={{
               color: white,
               fontSize: 18,
-              fontFamily: "Poppins",
-              marginVertical:4
+              fontFamily: "MontserratMedium",
+              marginVertical: 4,
             }}
           >
-            Add
+            add device
           </Text>
         </>
       )}
@@ -80,7 +95,7 @@ export default function DevicesList({ navigation }) {
         ListHeaderComponent={() => (
           <Text
             style={{
-              fontFamily: "Poppins",
+              fontFamily: "MontserratBold",
               fontSize: 23,
               marginLeft: 10,
               paddingVertical: 10,

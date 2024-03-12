@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { PaperProvider, TextInput } from "react-native-paper";
+import { PaperProvider, TextAuthentificationInput } from "react-native-paper";
+import AuthentificationInput from "../components/AuthentificationInput";
 import {
   Pressable,
   ScrollView,
@@ -79,7 +80,7 @@ function SignupScreen({ navigation }) {
           alignItems: "center",
           justifyContent: "center",
           display: "flex",
-          gap: 8,
+          gap: 10,
         }}
         style={{
           alignSelf: "center",
@@ -107,32 +108,32 @@ function SignupScreen({ navigation }) {
         >
           Create and account and backup all your devices
         </Text>
-        <SignupInput
+        <AuthentificationInput
           label="Email"
           icon="email"
           value={email}
           onChange={(email) => setEmail(email)}
-        ></SignupInput>
-        <SignupInput
+        ></AuthentificationInput>
+        <AuthentificationInput
           label="Phone number"
           icon="phone"
           value={phoneNumber}
           onChange={(phoneNumber) => setPhoneNumber(phoneNumber)}
-        ></SignupInput>
-        <SignupInput
+        ></AuthentificationInput>
+        <AuthentificationInput
           label="Password"
           icon="lock"
           value={password}
           onChange={(password) => setPassword(password)}
-        ></SignupInput>
-        <SignupInput
+        ></AuthentificationInput>
+        <AuthentificationInput
           label="Confirm password"
           icon="lock"
           value={passwordConfirmation}
           onChange={(passwordConfirmation) =>
             setPasswordConfirmation(passwordConfirmation)
           }
-        ></SignupInput>
+        ></AuthentificationInput>
         <Pressable
           style={{
             backgroundColor: white,
@@ -173,31 +174,3 @@ function SignupScreen({ navigation }) {
 }
 
 export default SignupScreen;
-
-function SignupInput({ label, icon, onChange, value }) {
-  return (
-    <PaperProvider>
-      <TextInput
-        mode="outlined"
-        style={{
-          backgroundColor: darkBlue,
-          paddingHorizontal: 10,
-          width: 290,
-        }}
-        textColor={white}
-        placeholderTextColor={white}
-        activeOutlineColor={yellow}
-        outlineColor={white}
-        outlineStyle={{
-          borderRadius: 15,
-          borderWidth: 1.5,
-          borderStyle: "solid",
-        }}
-        value={value}
-        onChangeText={onChange}
-        label={label}
-        right={<TextInput.Icon icon={icon} color={white} />}
-      />
-    </PaperProvider>
-  );
-}

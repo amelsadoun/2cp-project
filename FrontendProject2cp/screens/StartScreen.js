@@ -71,7 +71,7 @@ export default function StartScreen({ navigation }) {
         <Text
           style={{
             fontSize: 25,
-            fontFamily: "MontserratExtraLight",
+            fontFamily: "MontserratRegular",
             fontWeight: "200",
             textAlign: "center",
             marginHorizontal: "13%",
@@ -107,7 +107,7 @@ export default function StartScreen({ navigation }) {
         <Pressable>
           <Text
             style={{
-              fontFamily: "MontserratExtraLight",
+              fontFamily: "MontserratLight",
               color: yellow,
               textDecorationLine: "underline",
             }}

@@ -5,7 +5,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DeviceInfoScreen from "./DeviceInfoScreen";
 import DevicesList from "../components/DevicesList";
-
 const darkBlue = "#2F4062";
 const SecondStack = createNativeStackNavigator();
 

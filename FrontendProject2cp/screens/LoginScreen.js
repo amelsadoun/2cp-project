@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { PaperProvider, TextInput } from "react-native-paper";
+import AuthentificationInput from "../components/AuthentificationInput";
 import {
   Pressable,
   Text,
@@ -17,6 +18,9 @@ const yellow = "#F3F0A6";
 
 function LoginScreen({ navigation }) {
   const [text, setText] = useState("");
+  const [email, setEmail]= useState("");
+  const [password, setPassword] = useState("");
+
   const [fontsLoaded] = useFonts({
     MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
     MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
@@ -104,55 +108,18 @@ function LoginScreen({ navigation }) {
         >
           Sign into you account and manage your device & accessory
         </Text>
-        <PaperProvider>
-          <TextInput
-            mode="outlined"
-            style={{
-              backgroundColor: darkBlue,
-              paddingHorizontal: 10,
-              width: 290,
-              color: white,
-              textColor: white,
-              placeholderTextColor: white,
-            }}
-            textColor={white}
-            placeholderTextColor={white}
-            activeOutlineColor={yellow}
-            outlineStyle={{
-              borderRadius: 15,
-              borderColor: "white",
-              borderWidth: 1.5,
-              borderStyle: "solid",
-            }}
-            value={text}
-            onChangeText={(text) => setText(text)}
-            label="Email"
-            right={<TextInput.Icon icon="email" />}
-          />
-        </PaperProvider>
-        <PaperProvider>
-          <TextInput
-            mode="outlined"
-            style={{
-              backgroundColor: darkBlue,
-              paddingHorizontal: 10,
-              width: 290,
-            }}
-            textColor={white}
-            placeholderTextColor={white}
-            activeOutlineColor={yellow}
-            outlineStyle={{
-              borderRadius: 15,
-              borderColor: "white",
-              borderWidth: 1.5,
-              borderStyle: "solid",
-            }}
-            value={text}
-            onChangeText={(text) => setText(text)}
-            label="Password"
-            right={<TextInput.Icon icon="lock" />}
-          />
-        </PaperProvider>
+        <AuthentificationInput
+          label="Email"
+          icon="email"
+          value={email}
+          onChange={(email) => setEmail(email)}
+        ></AuthentificationInput>
+        <AuthentificationInput
+          label="Password"
+          icon="lock"
+          value={password}
+          onChange={(password) => setPassword(password)}
+        ></AuthentificationInput>
         <Pressable
           style={{
             backgroundColor: white,
