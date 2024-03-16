@@ -14,8 +14,9 @@ export default function AuthentificationScreen() {
       screenOptions={{ headerShown: false }}
     >
       <FirstStack.Screen name="Start screen" component={StartScreen} />
-<FirstStack.Screen name="Login screen" component={LoginScreen} />
-<FirstStack.Screen name="Signup screen" component={SignupScreen} />
-    <FirstStack.Screen name="Main screen" component={MainScreen} /></FirstStack.Navigator>
+      <FirstStack.Screen name="Login screen" component={LoginScreen} />
+      <FirstStack.Screen name="Signup screen" component={SignupScreen} />
+      <FirstStack.Screen name="Main screen" component={MainScreen} />
+    </FirstStack.Navigator>
   );
 }

@@ -1,4 +1,5 @@
 import { Pressable, Text, View, ImageBackground } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
 import LogoBig from "../icons/LogoBig";
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
@@ -21,6 +22,10 @@ export default function StartScreen({ navigation }) {
     MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
     MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
   });
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator />;
+  }
 
   return (
     <View

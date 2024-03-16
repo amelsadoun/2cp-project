@@ -19,6 +19,7 @@ export default function AuthentificationInput({
   icon,
   onChange,
   value,
+  hiddenText
 }) {
   const [fontsLoaded] = useFonts({
     MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
@@ -52,6 +53,7 @@ export default function AuthentificationInput({
           borderStyle: "solid",
         }}
         value={value}
+        secureTextEntry={(hiddenText==undefined || hiddenText==false)?false:true}
         onChangeText={onChange}
         right={<TextInput.Icon icon={icon} color={white} />}
       />

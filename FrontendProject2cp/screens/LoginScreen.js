@@ -117,6 +117,7 @@ function LoginScreen({ navigation }) {
         <AuthentificationInput
           label="Password"
           icon="lock"
+          hiddenText={true}
           value={password}
           onChange={(password) => setPassword(password)}
         ></AuthentificationInput>

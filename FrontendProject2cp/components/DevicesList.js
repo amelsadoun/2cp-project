@@ -2,8 +2,8 @@ import React from "react";
 import { Text, FlatList, TouchableOpacity, Image } from "react-native";
 import BackScreen from "../components/BackScreen";
 import { useFonts } from "expo-font";
-
-
+import axios from 'axios';
+import { useState, useEffect } from "react";
 const darkBlue = "#2F4062";
 const white = "#FEFEFF";
 
@@ -20,13 +20,26 @@ export default function DevicesList({ navigation }) {
     MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
   });
 
+
+  const [fetched, setFetched] = useState([]);
+
+  useEffect(() => {
+    const fetchDevices = async () => {
+      try {
+        const response = await axios.get('http://192.168.56.1:5000/api/device/user/65f564ce5af63d63941076db');
+        setFetched(response.data);
+      } catch (error) {
+        console.error('Error fetching devices:', error);
+      }
+    };
+
+    fetchDevices();
+  }, []);
   
-  var devicesData = [
-    { id: 1, name: "Device 1" },
-    { id: 6, name: "Device 6" },
-    { id: 7, name: "Device 7" },
-    { id: 8, name: "Device 8" },
-  ];
+
+  const devicesData= [...(fetched.devices?.devices || [])]
+  console.log(fetched.devices?.devices)
+
 
   function onAddDevice() {
     console.log("bonjour");
@@ -36,7 +49,7 @@ export default function DevicesList({ navigation }) {
     <TouchableOpacity
       onPress={
         item.name != "Add"
-          ? () => navigation.navigate("DeviceDetails", { deviceId: item.id })
+          ? () => navigation.navigate("DeviceDetails", { deviceId: item._id })
           : () => onAddDevice()
       }
       style={{
@@ -106,9 +119,9 @@ export default function DevicesList({ navigation }) {
         )}
         numColumns={2}
         style={{ paddingHorizontal: 18 }}
-        data={[...devicesData, { id: 8, name: "Add" }]}
+        data={[...devicesData, { _id: "add", name: "Add" }]}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item._id.toString()}
       />
     </BackScreen>
   );

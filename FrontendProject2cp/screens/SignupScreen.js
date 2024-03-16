@@ -22,6 +22,7 @@ function SignupScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
+  console.log(email);
   const [fontsLoaded] = useFonts({
     MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
     MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
@@ -123,6 +124,7 @@ function SignupScreen({ navigation }) {
         <AuthentificationInput
           label="Password"
           icon="lock"
+          hiddenText={true}
           value={password}
           onChange={(password) => setPassword(password)}
         ></AuthentificationInput>
@@ -130,6 +132,7 @@ function SignupScreen({ navigation }) {
           label="Confirm password"
           icon="lock"
           value={passwordConfirmation}
+          hiddenText={true}
           onChange={(passwordConfirmation) =>
             setPasswordConfirmation(passwordConfirmation)
           }

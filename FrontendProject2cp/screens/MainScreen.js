@@ -14,20 +14,20 @@ const Tab = createBottomTabNavigator();
 
 export default function MainScreen() {
   return (
-      <Tab.Navigator
-        screenOptions={{
-          header: () => <CommonHeader />,
-        }}
-        tabBar={(props) => <MyTabBar {...props} />}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Home" }}
-        />
-        <Tab.Screen name="Devices" component={DevicesScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-        <Tab.Screen name="Notifications" component={NotificationsScreen} />
-      </Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        header: () => <CommonHeader />,
+      }}
+      tabBar={(props) => <MyTabBar {...props} />}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: "Home" }}
+      />
+      <Tab.Screen name="Devices" component={DevicesScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Notifications" component={NotificationsScreen} />
+    </Tab.Navigator>
   );
 }
