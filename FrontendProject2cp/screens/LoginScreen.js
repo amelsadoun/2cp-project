@@ -9,7 +9,7 @@ import {
   View,
   ImageBackground,
 } from "react-native";
-
+import Fonts from "../components/Fonts";
 import { useFonts } from "expo-font";
 import Logo from "../icons/Logo";
 const white = "#FEFEFF";
@@ -21,16 +21,7 @@ function LoginScreen({ navigation }) {
   const [email, setEmail]= useState("");
   const [password, setPassword] = useState("");
 
-  const [fontsLoaded] = useFonts({
-    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
-    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
-    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
-    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
-    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
-    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
-    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
-    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
-  });
+  const [fontsLoaded] = useFonts(Fonts);
 
   return (
     <View
@@ -103,7 +94,7 @@ function LoginScreen({ navigation }) {
             marginVertical: 12,
             color: white,
             opacity: 0.75,
-            fontFamily: "MontserratLight",
+            fontFamily: "MontserratRegular",
           }}
         >
           Sign into you account and manage your device & accessory
@@ -140,7 +131,7 @@ function LoginScreen({ navigation }) {
           <Text
             style={{
               fontSize: 18,
-              fontFamily:"MontserratBold",
+              fontFamily:"MontserratSemiBold",
             }}
           >
             Log in
@@ -151,7 +142,7 @@ function LoginScreen({ navigation }) {
             style={{
               color: yellow,
               textDecorationLine: "underline",
-              fontFamily: "MontserratExtraLight",
+              fontFamily: "MontserratLight",
             }}
           >
             don't have an account? Sign up

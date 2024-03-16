@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { PaperProvider, TextAuthentificationInput } from "react-native-paper";
 import AuthentificationInput from "../components/AuthentificationInput";
 import {
   Pressable,
@@ -8,12 +7,14 @@ import {
   Text,
   View,
   ImageBackground,
+  ActivityIndicator
 } from "react-native";
 import { useFonts } from "expo-font";
 import Logo from "../icons/Logo";
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
+import Fonts from "../components/Fonts";
 
 function SignupScreen({ navigation }) {
   const [text, setText] = useState("");
@@ -23,16 +24,11 @@ function SignupScreen({ navigation }) {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   console.log(email);
-  const [fontsLoaded] = useFonts({
-    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
-    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
-    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
-    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
-    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
-    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
-    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
-    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
-  });
+  const [fontsLoaded] = useFonts(Fonts);
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator />;
+  }
 
   return (
     <View
@@ -102,7 +98,7 @@ function SignupScreen({ navigation }) {
             textAlign: "center",
             marginHorizontal: 60,
             color: white,
-            fontFamily: "MontserratBold",
+            fontFamily: "MontserratRegular",
             marginVertical: 10,
             opacity: 0.75,
           }}
@@ -155,7 +151,7 @@ function SignupScreen({ navigation }) {
           <Text
             style={{
               fontSize: 18,
-              fontWeight: "bold",
+              fontFamily: "MontserratSemiBold"
             }}
           >
             Sign up
@@ -166,6 +162,7 @@ function SignupScreen({ navigation }) {
             style={{
               color: yellow,
               textDecorationLine: "underline",
+              fontFamily: "MontserratLight"
             }}
           >
             Already have an account? Log in

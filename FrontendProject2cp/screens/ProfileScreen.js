@@ -1,8 +1,14 @@
 import BackScreen from "../components/BackScreen";
 import { View, Text, FlatList } from "react-native";
 import { useState, useEffect } from "react";
+import { useFonts } from "expo-font";
+import Fonts from "../components/Fonts";
 import axios from "axios";
+
+
+
 export default function ProfileScreen() {
+  const [fontsLoaded] = useFonts(Fonts);
   const [haja, setHaja] = useState({});
   useEffect(() => {
     async function getAllHajas() {
@@ -20,7 +26,7 @@ export default function ProfileScreen() {
   }, []);
 
   const usersTable = haja.data?.users;
-  console.log(haja.data?.users[0])
+  console.log(haja.data?.users[0]);
 
   return (
     <BackScreen>
@@ -33,44 +39,16 @@ export default function ProfileScreen() {
           alignItems: "center",
         }}
       >
-       
-        <FlatList
-          ListHeaderComponent={
-            <Text style={{ fontWeight: "bold", fontSize: 30 }}>
-              List of users:
-            </Text>
-          }
-          data={usersTable}
-          renderItem={({ item, index }) => (
-            <>
-              <Text
-                style={{
-                  fontSize: 24,
-                  fontWeight: "bold",
-                  marginTop:10,
-                  textDecorationLine: "underline"
-                }}
-              >
-                User {index+1}:
-              </Text>
-              <Text
-                style={{
-                  fontSize: 24,
-                }}
-              >
-                email: {item.email}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 24,
-                }}
-              >
-                Phone number: {item.phoneNumber}
-              </Text>
-            </>
-          )}
-        />
-      </View>
+        <Text
+          style={{
+            paddingTop: 8,
+            paddingBottom: 15,
+            fontSize: 26,
+            alignSelf: "center",
+            fontFamily: "MontserratBold",
+          }}
+        >My Profile</Text>
+        </View>
     </BackScreen>
   );
 }

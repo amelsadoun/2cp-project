@@ -5,6 +5,9 @@ const white = "#FEFEFF";
 const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
 import { useFonts } from "expo-font";
+import Fonts from "../components/Fonts";
+
+
 export default function StartScreen({ navigation }) {
   const buttons = [
     { label: "Log in", routeName: "Login screen" },
@@ -12,16 +15,7 @@ export default function StartScreen({ navigation }) {
     { label: "Use as guest", routeName: "Main screen" },
   ];
 
-  const [fontsLoaded] = useFonts({
-    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
-    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
-    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
-    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
-    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
-    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
-    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
-    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
-  });
+  const [fontsLoaded] = useFonts(Fonts);
 
   if (!fontsLoaded) {
     return <ActivityIndicator />;

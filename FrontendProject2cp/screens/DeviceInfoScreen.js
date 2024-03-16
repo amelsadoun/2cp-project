@@ -6,18 +6,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useFonts } from "expo-font";
+import Fonts from "../components/Fonts";
 
 const DeviceInfoScreen = ({ route }) => {
-  const [fontsLoaded] = useFonts({
-    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
-    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
-    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
-    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
-    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
-    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
-    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
-    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
-  });
+
+  const [fontsLoaded] = useFonts(Fonts);
 
   const { deviceId } = route.params;
 
@@ -47,7 +40,7 @@ const DeviceInfoScreen = ({ route }) => {
   };
 
   // Render the UI only when status is not null
-  if (status === null) {
+  if (status === null || !fontsLoaded) {
     return <ActivityIndicator />; // or any loading indicator
   }
 
@@ -66,12 +59,11 @@ const DeviceInfoScreen = ({ route }) => {
       >
         <Text
           style={{
-            fontWeight: "bold",
             fontFamily: "MontserratBold",
-            fontSize: 30,
+            fontSize: 24,
           }}
         >
-          Device: {fetched.device?.name}
+          Device name: {fetched.device?.name}
         </Text>
         <Switch
           trackColor={{ false: "#red", true: "#green" }}
@@ -88,7 +80,7 @@ const DeviceInfoScreen = ({ route }) => {
         >
           <Text
             style={{
-              fontFamily: "MontserratLight",
+              fontFamily: "MontserratRegular",
               fontSize: 20,
             }}
           >

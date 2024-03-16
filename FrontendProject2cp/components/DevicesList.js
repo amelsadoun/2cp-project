@@ -109,9 +109,11 @@ export default function DevicesList({ navigation }) {
           <Text
             style={{
               fontFamily: "MontserratBold",
-              fontSize: 23,
+              fontSize: 26,
               marginLeft: 10,
-              paddingVertical: 10,
+              paddingTop: 8,
+              paddingBottom: 15,
+              textAlign: "center",
             }}
           >
             Recent Devices
