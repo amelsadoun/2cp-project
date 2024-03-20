@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { PaperProvider, TextInput } from "react-native-paper";
 import AuthentificationInput from "../components/AuthentificationInput";
 import {
   Pressable,
@@ -12,13 +11,14 @@ import {
 import Fonts from "../components/Fonts";
 import { useFonts } from "expo-font";
 import Logo from "../icons/Logo";
+
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
 
 function LoginScreen({ navigation }) {
   const [text, setText] = useState("");
-  const [email, setEmail]= useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [fontsLoaded] = useFonts(Fonts);
@@ -85,6 +85,7 @@ function LoginScreen({ navigation }) {
           paddingTop: 25,
           paddingBottom: "6%",
         }}
+        sharedTransitionTag="idk"
       >
         <Text
           style={{
@@ -131,7 +132,7 @@ function LoginScreen({ navigation }) {
           <Text
             style={{
               fontSize: 18,
-              fontFamily:"MontserratSemiBold",
+              fontFamily: "MontserratSemiBold",
             }}
           >
             Log in

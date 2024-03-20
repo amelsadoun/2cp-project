@@ -6,7 +6,7 @@ const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
 import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
-
+import { Animated } from "react-native";
 
 export default function StartScreen({ navigation }) {
   const buttons = [
@@ -79,7 +79,7 @@ export default function StartScreen({ navigation }) {
           one app for all smart home elements
         </Text>
       </ImageBackground>
-      <View
+      <Animated.View
         style={{
           display: "flex",
           flexDirection: "column",
@@ -95,7 +95,7 @@ export default function StartScreen({ navigation }) {
           paddingBottom: "5%",
           gap: 16,
         }}
-      >
+>
         {buttons.map((item) => (
           <NavButton
             key={item.label}
@@ -114,7 +114,7 @@ export default function StartScreen({ navigation }) {
             need help?
           </Text>
         </Pressable>
-      </View>
+      </Animated.View>
     </View>
   );
 }

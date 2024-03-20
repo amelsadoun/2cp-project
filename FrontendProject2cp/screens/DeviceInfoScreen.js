@@ -15,7 +15,7 @@ const DeviceInfoScreen = ({ route }) => {
   const { deviceId } = route.params;
 
   const [fetched, setFetched] = useState({});
-  const [status, setStatus] = useState(null); // Initialize status as null initially
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     const fetchDevice = async () => {
@@ -24,7 +24,7 @@ const DeviceInfoScreen = ({ route }) => {
           "http://192.168.56.1:5000/api/device/" + deviceId
         );
         setFetched(response.data);
-        setStatus(response.data.device?.status); // Set status after fetching data
+        setStatus(response.data.device?.status);
       } catch (error) {
         console.error("Error fetching devices:", error);
       }

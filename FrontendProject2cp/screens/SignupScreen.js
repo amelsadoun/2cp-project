@@ -26,9 +26,6 @@ function SignupScreen({ navigation }) {
   console.log(email);
   const [fontsLoaded] = useFonts(Fonts);
 
-  if (!fontsLoaded) {
-    return <ActivityIndicator />;
-  }
 
   return (
     <View
@@ -84,7 +81,7 @@ function SignupScreen({ navigation }) {
           flexDirection: "column",
           alignContent: "center",
           backgroundColor: darkBlue,
-          height: "45%",
+          height: "49%",
           width: "105%",
           borderTopLeftRadius: 90,
           borderTopRightRadius: 90,

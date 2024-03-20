@@ -11,7 +11,10 @@ export default function AuthentificationNav() {
   return (
     <FirstStack.Navigator
       initialRouteName="Start screen"
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+        animation: "none",
+      }}
     >
       <FirstStack.Screen name="Start screen" component={StartScreen} />
       <FirstStack.Screen name="Login screen" component={LoginScreen} />
