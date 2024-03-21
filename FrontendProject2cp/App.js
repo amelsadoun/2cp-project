@@ -1,17 +1,17 @@
 import React from "react";
 import MainNav from "./navigators/MainNav";
-import AuthentificationNav from "./navigators/AuthentificationNav";
+import PreviewNav from "./navigators/PreviewNav";
 import { NavigationContainer } from "@react-navigation/native";
-const userIsSignedIn = false;
+const appUsedBefore = false;
 const darkBlue = "#2F4062";
 
 export default function App() {
   return (
     <NavigationContainer>
-      {userIsSignedIn ? (
+      {appUsedBefore ? (
         <MainNav></MainNav>
       ) : (
-        <AuthentificationNav></AuthentificationNav>
+        <PreviewNav></PreviewNav>
       )}
     </NavigationContainer>
   );
