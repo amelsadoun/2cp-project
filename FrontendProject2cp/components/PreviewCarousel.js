@@ -1,9 +1,13 @@
 import React from "react";
 import { View } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from "./CarouselCardItem";
+import CarouselCardItem, {
+  SLIDER_WIDTH,
+  ITEM_WIDTH,
+  screenHeight,
+} from "./CarouselCardItem";
 
-const PreviewCarousel = () => {
+const PreviewCarousel = ({navigation}) => {
   const [index, setIndex] = React.useState(0);
   const isCarousel = React.useRef(null);
 
@@ -28,15 +32,18 @@ const PreviewCarousel = () => {
   return (
     <View>
       <Carousel
-        layout="tinder"
+        layout="stack"
         layoutCardOffset={9}
         ref={isCarousel}
         data={data}
+        loop={true}
         renderItem={CarouselCardItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
+        sliderHeight={screenHeight}
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}
+        activeAnimationType="spring"
       />
       <Pagination
         dotsLength={data.length}
@@ -48,6 +55,13 @@ const PreviewCarousel = () => {
           borderRadius: 5,
           marginHorizontal: 0,
           backgroundColor: "rgba(0, 0, 0, 0.92)",
+        }}
+        containerStyle={{
+          position: "absolute",
+          bottom: 10, // Adjust this value to position the pagination as needed
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}

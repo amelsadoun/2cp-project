@@ -1,4 +1,4 @@
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Pressable, Text } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
@@ -21,10 +21,19 @@ export default function PreviewScreen({ navigation }) {
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
-        padding: 50,
+        backgroundColor: darkBlue,
       }}
     >
-      <PreviewCarousel />
+      <PreviewCarousel navigation={navigation} />
+      <Pressable
+        style={{
+          position: "absolute",
+          bottom: "10%"
+        }}
+        onPress={() => navigation.navigate("Main screen")}
+      >
+        <Text>Start</Text>
+      </Pressable>
     </SafeAreaView>
   );
 }
