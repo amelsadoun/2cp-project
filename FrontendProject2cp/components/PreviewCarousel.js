@@ -19,24 +19,28 @@ const PreviewCarousel = ({ navigation }) => {
     return <ActivityIndicator />;
   }
 
+  
   const data = [
     {
       title: "Full Control For Your Smart Home",
       body: "Control your smart home easier with our better features",
       imageKey: "image1",
       buttonText: "Next",
+      onPressNext: () => isCarousel.current.snapToNext(),
     },
     {
       title: "Full Control For Your living room",
       body: "Control your smart home easier with our better features",
       imageKey: "image2",
       buttonText: "Next",
+      onPressNext: () => isCarousel.current.snapToNext(),
     },
     {
       title: "Full Control For Your kitchen",
       body: "Control your smart home easier with our better features",
       imageKey: "image3",
       buttonText: "Start",
+      onPressNext: () => navigation.navigate("Main screen"),
     },
   ];
 
@@ -48,16 +52,17 @@ const PreviewCarousel = ({ navigation }) => {
         ref={isCarousel}
         data={data}
         renderItem={({ item, index }) => (
-          <CarouselCardItem item={item} index={index} navigation={navigation} />
+          <CarouselCardItem item={item} index={index} navigation={navigation} onPressNext={item.onPressNext}/>
         )}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
         sliderHeight={screenHeight}
         onSnapToItem={(index) => setIndex(index)}
-        useScrollView={true}
+        useScrollView={false}
         activeAnimationType="spring"
         autoplay={true}
         autoplayDelay={20}
+        
       />
       <Pagination
         dotsLength={data.length}
@@ -77,7 +82,7 @@ const PreviewCarousel = ({ navigation }) => {
         }}
         containerStyle={{
           position: "absolute",
-          bottom: "27%", // Adjust this value to position the pagination as needed
+          bottom: "33%", // Adjust this value to position the pagination as needed
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
