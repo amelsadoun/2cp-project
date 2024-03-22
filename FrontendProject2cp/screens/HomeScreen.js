@@ -2,44 +2,35 @@ import React from "react";
 import { Text, FlatList, TouchableOpacity, Image } from "react-native";
 import BackScreen from "../components/BackScreen";
 import { useFonts } from "expo-font";
-import axios from 'axios';
+import axios from "axios";
 import { useState, useEffect } from "react";
-const darkBlue = "#2F4062";
-const white = "#FEFEFF";
+import { colors } from "../assets/colors";
+import Fonts from "../components/Fonts";
+import { useTheme } from "../contexts/ThemeContext";
 
-export default function DevicesList({ navigation }) {
-
-  const [fontsLoaded] = useFonts({
-    MontserratBold: require("../assets/fonts/MontserratAlt1-Bold.otf"),
-    MontserratLight: require("../assets/fonts/MontserratAlt1-Light.otf"),
-    MontserratExtraLight: require("../assets/fonts/MontserratAlt1-ExtraLight.otf"),
-    MontserratExtraBold: require("../assets/fonts/MontserratAlt1-ExtraBold.otf"),
-    MontserratMedium: require("../assets/fonts/MontserratAlt1-Medium.otf"),
-    MontserratRegular: require("../assets/fonts/MontserratAlt1-Regular.otf"),
-    MontserratSemiBold: require("../assets/fonts/MontserratAlt1-SemiBold.otf"),
-    MontserratThin: require("../assets/fonts/MontserratAlt1-Thin.otf"),
-  });
-
+export default function HomeScreen({ navigation }) {
+  const { isDarkTheme } = useTheme();
+  const [fontsLoaded] = useFonts(Fonts);
 
   const [fetched, setFetched] = useState([]);
 
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await axios.get('http://192.168.56.1:5000/api/device/user/65f564ce5af63d63941076db');
+        const response = await axios.get(
+          "http://192.168.56.1:5000/api/device/user/65f564ce5af63d63941076db"
+        );
         setFetched(response.data);
       } catch (error) {
-        console.error('Error fetching devices:', error);
+        console.error("Error fetching devices:", error);
       }
     };
 
     fetchDevices();
   }, []);
-  
 
-  const devicesData= [...(fetched.devices?.devices || [])]
-  console.log(fetched.devices?.devices)
-
+  const devicesData = [...(fetched.devices?.devices || [])];
+  console.log(fetched.devices?.devices);
 
   function onAddDevice() {
     console.log("bonjour");
@@ -53,7 +44,7 @@ export default function DevicesList({ navigation }) {
           : () => onAddDevice()
       }
       style={{
-        backgroundColor: darkBlue,
+        backgroundColor: isDarkTheme ? colors.darkerBlue : colors.darkBlue,
         flex: 1,
         padding: 20,
         maxWidth: 176,
@@ -76,7 +67,7 @@ export default function DevicesList({ navigation }) {
           <Image source={require("../assets/Light.png")}></Image>
           <Text
             style={{
-              color: white,
+              color: colors.white,
               fontSize: 18,
               fontFamily: "MontserratMedium",
             }}
@@ -89,7 +80,7 @@ export default function DevicesList({ navigation }) {
           <Image source={require("../assets/AddIcon.png")}></Image>
           <Text
             style={{
-              color: white,
+              color: colors.white,
               fontSize: 18,
               fontFamily: "MontserratMedium",
               marginVertical: 4,
@@ -104,21 +95,18 @@ export default function DevicesList({ navigation }) {
 
   return (
     <BackScreen>
+      <Text
+        style={{
+          paddingTop: 8,
+          paddingBottom: 15,
+          fontSize: 26,
+          alignSelf: "center",
+          fontFamily: "MontserratBold",
+        }}
+      >
+        Recent Devices
+      </Text>
       <FlatList
-        ListHeaderComponent={() => (
-          <Text
-            style={{
-              fontFamily: "MontserratBold",
-              fontSize: 26,
-              marginLeft: 10,
-              paddingTop: 8,
-              paddingBottom: 15,
-              textAlign: "center",
-            }}
-          >
-            Recent Devices
-          </Text>
-        )}
         numColumns={2}
         style={{ paddingHorizontal: 18 }}
         data={[...devicesData, { _id: "add", name: "Add" }]}

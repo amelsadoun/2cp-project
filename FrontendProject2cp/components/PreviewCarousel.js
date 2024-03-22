@@ -72,17 +72,17 @@ const PreviewCarousel = ({ navigation }) => {
           width: 13,
           height: 13,
           borderRadius: 15,
-          borderWidth: 1, // Add border width
-          borderColor: "white", // Border color for all dots
-          backgroundColor: "white", // Default background color
+          borderWidth: 1, 
+          borderColor: "white", 
+          backgroundColor: "white", 
           marginHorizontal: 3,
         }}
         dotContainerStyle={{
-          marginHorizontal: 5, // Adjust space between dots if needed
+          marginHorizontal: 5, 
         }}
         containerStyle={{
           position: "absolute",
-          bottom: "33%", // Adjust this value to position the pagination as needed
+          bottom: "33%", 
           width: "100%",
           justifyContent: "center",
           alignItems: "center",

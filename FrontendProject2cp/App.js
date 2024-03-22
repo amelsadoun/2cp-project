@@ -2,17 +2,15 @@ import React from "react";
 import MainNav from "./navigators/MainNav";
 import PreviewNav from "./navigators/PreviewNav";
 import { NavigationContainer } from "@react-navigation/native";
-const appUsedBefore = false;
-const darkBlue = "#2F4062";
+import { ThemeProvider } from "./contexts/ThemeContext";
+const appUsedBefore = true;
 
 export default function App() {
   return (
-    <NavigationContainer>
-      {appUsedBefore ? (
-        <MainNav></MainNav>
-      ) : (
-        <PreviewNav></PreviewNav>
-      )}
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        {appUsedBefore ? <MainNav></MainNav> : <PreviewNav></PreviewNav>}
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }

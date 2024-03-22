@@ -7,7 +7,7 @@ import NotificationsScreen from "../screens/NotificationsScreen";
 import DevicesScreen from "../screens/DevicesScreen";
 import HomeNav from "./HomeNav";
 import ProfileScreen from "../screens/ProfileScreen";
-import { Switch, Text, View } from "react-native";
+import SettingsScreen from "../screens/SettingsScreen";
 const darkBlue = "#2F4062";
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +26,7 @@ export default function MainNav() {
         options={{ title: "Home" }}
       />
       <Tab.Screen name="Devices" component={DevicesScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="Notifications" component={NotificationsScreen} />
     </Tab.Navigator>
   );
