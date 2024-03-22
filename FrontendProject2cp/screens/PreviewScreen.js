@@ -25,15 +25,7 @@ export default function PreviewScreen({ navigation }) {
       }}
     >
       <PreviewCarousel navigation={navigation} />
-      <Pressable
-        style={{
-          position: "absolute",
-          bottom: "10%"
-        }}
-        onPress={() => navigation.navigate("Main screen")}
-      >
-        <Text>Start</Text>
-      </Pressable>
+      
     </SafeAreaView>
   );
 }

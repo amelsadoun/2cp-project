@@ -1,31 +1,42 @@
 import React from "react";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import CarouselCardItem, {
   SLIDER_WIDTH,
   ITEM_WIDTH,
   screenHeight,
 } from "./CarouselCardItem";
+import { useFonts } from "expo-font";
+import Fonts from "./Fonts";
 
-const PreviewCarousel = ({navigation}) => {
+const PreviewCarousel = ({ navigation }) => {
   const [index, setIndex] = React.useState(0);
   const isCarousel = React.useRef(null);
 
+  const [fontsLoaded] = useFonts(Fonts);
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator />;
+  }
+
   const data = [
     {
-      title: "Aenean leo",
-      body: "Ut tincidunt tincidunt erat. Sed cursus turpis vitae tortor. Quisque malesuada placerat nisl. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.",
-      imgUrl: "https://picsum.photos/id/11/200/300",
+      title: "Full Control For Your Smart Home",
+      body: "Control your smart home easier with our better features",
+      imageKey: "image1",
+      buttonText: "Next",
     },
     {
-      title: "In turpis",
-      body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
-      imgUrl: "https://picsum.photos/id/10/200/300",
+      title: "Full Control For Your living room",
+      body: "Control your smart home easier with our better features",
+      imageKey: "image2",
+      buttonText: "Next",
     },
     {
-      title: "Lorem Ipsum",
-      body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
-      imgUrl: "https://picsum.photos/id/12/200/300",
+      title: "Full Control For Your kitchen",
+      body: "Control your smart home easier with our better features",
+      imageKey: "image3",
+      buttonText: "Start",
     },
   ];
 
@@ -33,32 +44,40 @@ const PreviewCarousel = ({navigation}) => {
     <View>
       <Carousel
         layout="stack"
-        layoutCardOffset={9}
+        layoutCardOffset={20}
         ref={isCarousel}
         data={data}
-        loop={true}
-        renderItem={CarouselCardItem}
+        renderItem={({ item, index }) => (
+          <CarouselCardItem item={item} index={index} navigation={navigation} />
+        )}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
         sliderHeight={screenHeight}
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}
         activeAnimationType="spring"
+        autoplay={true}
+        autoplayDelay={20}
       />
       <Pagination
         dotsLength={data.length}
         activeDotIndex={index}
         carouselRef={isCarousel}
         dotStyle={{
-          width: 10,
-          height: 10,
-          borderRadius: 5,
-          marginHorizontal: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.92)",
+          width: 13,
+          height: 13,
+          borderRadius: 15,
+          borderWidth: 1, // Add border width
+          borderColor: "white", // Border color for all dots
+          backgroundColor: "white", // Default background color
+          marginHorizontal: 3,
+        }}
+        dotContainerStyle={{
+          marginHorizontal: 5, // Adjust space between dots if needed
         }}
         containerStyle={{
           position: "absolute",
-          bottom: 10, // Adjust this value to position the pagination as needed
+          bottom: "27%", // Adjust this value to position the pagination as needed
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
