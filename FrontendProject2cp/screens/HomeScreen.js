@@ -7,9 +7,10 @@ import { useState, useEffect } from "react";
 import { colors } from "../assets/colors";
 import Fonts from "../components/Fonts";
 import { useTheme } from "../contexts/ThemeContext";
-
+import ScreenTitle from "../components/ScreenTitle";
+import { ThemeProvider } from "../contexts/ThemeContext";
 export default function HomeScreen({ navigation }) {
-  const { isDarkTheme } = useTheme();
+  const { isDarkMode } = useTheme();
   const [fontsLoaded] = useFonts(Fonts);
 
   const [fetched, setFetched] = useState([]);
@@ -36,7 +37,7 @@ export default function HomeScreen({ navigation }) {
     console.log("bonjour");
   }
 
-  const renderItem = ({ item }) => (
+  const DevicesListItem = ({ item }) => (
     <TouchableOpacity
       onPress={
         item.name != "Add"
@@ -44,7 +45,7 @@ export default function HomeScreen({ navigation }) {
           : () => onAddDevice()
       }
       style={{
-        backgroundColor: isDarkTheme ? colors.darkerBlue : colors.darkBlue,
+        backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
         flex: 1,
         padding: 20,
         maxWidth: 176,
@@ -95,22 +96,23 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <BackScreen>
-      <Text
-        style={{
-          paddingTop: 8,
-          paddingBottom: 15,
-          fontSize: 26,
-          alignSelf: "center",
-          fontFamily: "MontserratBold",
-        }}
-      >
-        Recent Devices
-      </Text>
+      <ScreenTitle title="Home"></ScreenTitle>
       <FlatList
+        ListHeaderComponent={
+          <Text
+            style={{
+              fontFamily: "MontserratSemiBold",
+              fontSize: 20,
+              paddingVertical: 13,
+            }}
+          >
+            Recent devices
+          </Text>
+        }
         numColumns={2}
         style={{ paddingHorizontal: 18 }}
         data={[...devicesData, { _id: "add", name: "Add" }]}
-        renderItem={renderItem}
+        renderItem={DevicesListItem}
         keyExtractor={(item) => item._id.toString()}
       />
     </BackScreen>

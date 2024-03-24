@@ -83,10 +83,13 @@ function MyTabBar({ state, descriptors, navigation }) {
                 alignContent: "center",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: 9,
-                marginHorizontal: 19,
+                padding: 10,
+                marginHorizontal: 16,
                 aspectRatio: 1,
                 borderRadius: 100,
+                paddingLeft:label=="Settings"?12:10,
+                paddingRight:label=="Notifications"?8:10,
+                paddingBottom:label=="Notifications"?6:10,
               }}
             >
               <Svg
@@ -96,7 +99,7 @@ function MyTabBar({ state, descriptors, navigation }) {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <Icon name={label}></Icon>
+                <Icon name={label} color={isFocused?colors.yellow:"white"}></Icon>
               </Svg>
             </Pressable>
           );
@@ -106,16 +109,16 @@ function MyTabBar({ state, descriptors, navigation }) {
   );
 }
 
-function Icon({ name }) {
+function Icon({ name, color }) {
   switch (name) {
     case "Settings":
-      return <User></User>;
+      return <User color={color}></User>;
     case "Home":
-      return <Home></Home>;
+      return <Home color={color}></Home>;
     case "Devices":
-      return <Devices></Devices>;
+      return <Devices color={color}></Devices>;
     case "Notifications":
-      return <NotificationsIcon></NotificationsIcon>;
+      return <NotificationsIcon color={color}></NotificationsIcon>;
   }
 }
 

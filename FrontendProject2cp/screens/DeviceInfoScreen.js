@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
-
+import ScreenTitle from "../components/ScreenTitle";
 const DeviceInfoScreen = ({ route }) => {
 
   const [fontsLoaded] = useFonts(Fonts);

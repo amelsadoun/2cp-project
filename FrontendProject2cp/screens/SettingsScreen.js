@@ -3,6 +3,8 @@ import { View, Text, ActivityIndicator } from "react-native";
 import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
 import ThemeSwitch from "../components/ThemeSwitch";
+import ScreenTitle from "../components/ScreenTitle";
+
 export default function SettingsScreen() {
   const [fontsLoaded] = useFonts(Fonts);
 
@@ -21,17 +23,7 @@ export default function SettingsScreen() {
           alignItems: "center",
         }}
       >
-        <Text
-          style={{
-            paddingTop: 8,
-            paddingBottom: 15,
-            fontSize: 26,
-            alignSelf: "center",
-            fontFamily: "MontserratBold",
-          }}
-        >
-          Settings
-        </Text>
+        <ScreenTitle title="Settings"/>
         <ThemeSwitch></ThemeSwitch>
       </View>
     </BackScreen>

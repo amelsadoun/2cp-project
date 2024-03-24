@@ -2,7 +2,7 @@ import BackScreen from "../components/BackScreen";
 import { View, Text, ActivityIndicator } from "react-native";
 import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
-
+import ScreenTitle from "../components/ScreenTitle";
 export default function NotificationsScreen() {
   const [fontsLoaded] = useFonts(Fonts);
 
@@ -21,17 +21,7 @@ export default function NotificationsScreen() {
           alignItems: "center",
         }}
       >
-        <Text
-          style={{
-            paddingTop: 8,
-            paddingBottom: 15,
-            fontSize: 26,
-            alignSelf: "center",
-            fontFamily: "MontserratBold",
-          }}
-        >
-          Notifications
-        </Text>
+        <ScreenTitle title="Notifications"></ScreenTitle>
       </View>
     </BackScreen>
   );

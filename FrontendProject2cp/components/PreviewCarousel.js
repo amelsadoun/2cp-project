@@ -60,9 +60,6 @@ const PreviewCarousel = ({ navigation }) => {
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={false}
         activeAnimationType="spring"
-        autoplay={true}
-        autoplayDelay={20}
-        
       />
       <Pagination
         dotsLength={data.length}
@@ -82,7 +79,7 @@ const PreviewCarousel = ({ navigation }) => {
         }}
         containerStyle={{
           position: "absolute",
-          bottom: "33%", 
+          bottom: "37%", 
           width: "100%",
           justifyContent: "center",
           alignItems: "center",

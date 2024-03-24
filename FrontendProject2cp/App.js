@@ -3,7 +3,7 @@ import MainNav from "./navigators/MainNav";
 import PreviewNav from "./navigators/PreviewNav";
 import { NavigationContainer } from "@react-navigation/native";
 import { ThemeProvider } from "./contexts/ThemeContext";
-const appUsedBefore = true;
+const appUsedBefore = false;
 
 export default function App() {
   return (
