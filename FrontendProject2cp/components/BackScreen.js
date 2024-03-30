@@ -13,7 +13,7 @@ function BackScreen({ children }) {
       resizeMode="cover"
       style={{
         backgroundColor: isDarkMode?darkBlue:white,
-        height: "111%",
+        height: "120%",
         flex: 1,
         resizeMode: "cover",
         display: "flex",

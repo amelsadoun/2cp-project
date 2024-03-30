@@ -13,14 +13,12 @@ function CommonHeader() {
         display: "flex",
         flexDirection: "row",
         alignContent: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         paddingHorizontal: "5%",
-        marginTop: 30,
-        paddingTop: 10,
+        paddingTop: "10%",
         backgroundColor: isDarkMode?darkBlue:"#FEFEFF",
       }}
     >
-      <MenuIcon />
       <Logo />
     </View>
   );

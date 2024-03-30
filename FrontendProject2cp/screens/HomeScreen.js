@@ -104,6 +104,7 @@ export default function HomeScreen({ navigation }) {
               fontFamily: "MontserratSemiBold",
               fontSize: 20,
               paddingVertical: 13,
+              color: isDarkMode? colors.white: "black"
             }}
           >
             Recent devices

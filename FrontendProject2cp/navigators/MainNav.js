@@ -20,13 +20,9 @@ export default function MainNav() {
       }}
       tabBar={(props) => <MyTabBar {...props} />}
     >
-      <Tab.Screen
-        name="Home"
-        component={HomeNav}
-        options={{ title: "Home" }}
-      />
-      <Tab.Screen name="Devices" component={DevicesScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Home" component={HomeNav} options={{ title: "Home" }} />
+      <Tab.Screen name="Devices" component={DevicesScreen} />
       <Tab.Screen name="Notifications" component={NotificationsScreen} />
     </Tab.Navigator>
   );
