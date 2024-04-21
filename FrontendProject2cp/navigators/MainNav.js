@@ -7,7 +7,7 @@ import NotificationsScreen from "../screens/NotificationsScreen";
 import DevicesScreen from "../screens/DevicesScreen";
 import HomeNav from "./HomeNav";
 import ProfileScreen from "../screens/ProfileScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+import SettingsNav from "./SettingsNav";
 const darkBlue = "#2F4062";
 
 const Tab = createBottomTabNavigator();
@@ -23,7 +23,7 @@ export default function MainNav() {
       <Tab.Screen name="Home" component={HomeNav} options={{ title: "Home" }} />
       <Tab.Screen name="Devices" component={DevicesScreen} />
       <Tab.Screen name="Notifications" component={NotificationsScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={SettingsNav} />
     </Tab.Navigator>
   );
 }

@@ -9,7 +9,7 @@ import { Button, Switch, Icon } from "react-native-paper";
 import { colors } from "../assets/colors";
 import { useTheme } from "../contexts/ThemeContext";
 
-export default function SettingsScreen() {
+export default function SettingsScreen({ navigation }) {
   const { isDarkMode, toggleTheme } = useTheme();
   const { isUserMode } = useUserMode();
   const [fontsLoaded] = useFonts(Fonts);
@@ -41,7 +41,7 @@ export default function SettingsScreen() {
               contentStyle={{ alignSelf: "flex-start", gap: 8 }}
               buttonColor={isDarkMode ? colors.darkerBlue : colors.darkBlue}
               textColor={colors.white}
-              onPress={() => console.log("Pressed")}
+              onPress={() => navigation.navigate("Edit Profile screen")}
             >
               <Text style={{ fontFamily: "MontserratRegular" }}>
                 Edit Profile
@@ -54,7 +54,7 @@ export default function SettingsScreen() {
               contentStyle={{ alignSelf: "flex-start", gap: 8 }}
               buttonColor={isDarkMode ? colors.darkerBlue : colors.darkBlue}
               textColor={colors.white}
-              onPress={() => console.log("Pressed")}
+              onPress={() => navigation.navigate("Change Password screen")}
             >
               <Text style={{ fontFamily: "MontserratRegular" }}>
                 Change password
@@ -62,31 +62,14 @@ export default function SettingsScreen() {
             </Button>
           </>
         )}
-        <Pressable
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
-            borderRadius: 20,
-            paddingHorizontal: 15,
-          }}
+        <SwitchButton
+          title="Dark mode"
           onPress={toggleTheme}
+          icon="weather-night"
+          isDarkMode={isDarkMode}
         >
-          <View style={{display:"flex", flexDirection: "row", gap: 10}}>
-          <Icon source="weather-night" color={colors.white} size={20}></Icon>
-          <Text
-            style={{
-              color: colors.white,
-              fontFamily: "MontserratRegular"
-            }}
-          >
-            Dark mode
-          </Text></View>
           <ThemeSwitch></ThemeSwitch>
-        </Pressable>
+        </SwitchButton>
         <Pressable
           style={{
             width: "100%",
@@ -96,28 +79,89 @@ export default function SettingsScreen() {
             justifyContent: "space-between",
             backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
             borderRadius: 20,
-            gap:10,
+            gap: 10,
             paddingHorizontal: 15,
           }}
         >
-          <View style={{display:"flex", flexDirection: "row", gap: 10}}>
-          <Icon source="bell" color={colors.white} size={20}></Icon>
-          <Text
-            style={{
-              color: colors.white,
-              fontFamily: "MontserratRegular"
-            }}
-          >
-            Push notifications
-          </Text></View>
+          <View style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+            <Icon source="bell" color={colors.white} size={20}></Icon>
+            <Text
+              style={{
+                color: colors.white,
+                fontFamily: "MontserratRegular",
+              }}
+            >
+              Push notifications
+            </Text>
+          </View>
           <Switch
             style={{
               marginTop: 0,
             }}
           ></Switch>
         </Pressable>
+        <SecondButton title="Help" route="FAQ screen" navigation={navigation} isDarkMode={isDarkMode} />
+        {isUserMode && (
+          <SecondButton title="Log out" route="" navigation={navigation} isDarkMode={isDarkMode}/>
+        )}
       </View>
     </BackScreen>
   );
 }
 /*<ThemeSwitch></ThemeSwitch>*/
+
+function SwitchButton({ title, icon, children, onPress, isDarkMode }) {
+  return (
+    <Pressable
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
+        borderRadius: 20,
+        paddingHorizontal: 15,
+      }}
+      onPress={onPress}
+    >
+      <View style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+        <Icon source={icon} color={colors.white} size={20}></Icon>
+        <Text
+          style={{
+            color: colors.white,
+            fontFamily: "MontserratRegular",
+          }}
+        >
+          {title}
+        </Text>
+      </View>
+      {children}
+    </Pressable>
+  );
+}
+
+function SecondButton({ title, navigation, route, isDarkMode }) {
+  return (
+    <Pressable
+      onPress={() => navigation.navigate(route)}
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        fontFamily: "MontserratRegular",
+        justifyContent: "space-between",
+        paddingHorizontal: 23,
+        paddingVertical: 10,
+        width: "100%",
+      }}
+    >
+      <Text style={{ fontSize: 19, fontFamily: "MontserratSemiBold", color: isDarkMode? colors.white: "black" }}>
+        {title}
+      </Text>
+      <Text style={{ fontSize: 22, fontFamily: "MontserratSemiBold", color: isDarkMode? colors.white: "black"  }}>
+        {">"}
+      </Text>
+    </Pressable>
+  );
+}

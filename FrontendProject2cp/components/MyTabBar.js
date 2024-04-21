@@ -3,12 +3,14 @@ import { Svg } from "react-native-svg";
 import React from "react";
 import Devices from "../icons/Devices";
 import Home from "../icons/Home";
-import User from "../icons/User";
+import Settings from "../icons/Settings";
 import NotificationsIcon from "../icons/Notifications";
 import { useTheme } from "../contexts/ThemeContext";
 import { colors } from "../assets/colors";
-function MyTabBar({ state, descriptors, navigation }) {
+function MyTabBar({ state, descriptors, navigation, route }) {
   const { isDarkMode } = useTheme();
+  const currentRoute = state.routes[state.index]; 
+  //console.log(currentRoute.name)
 
   return (
     <View
@@ -30,8 +32,8 @@ function MyTabBar({ state, descriptors, navigation }) {
           alignItems: "center",
           justifyContent: "space-around",
           paddingVertical: 14,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
+          borderTopLeftRadius: currentRoute.name=="Settings" && currentRoute.state?.index==1 ?0:20,
+          borderTopRightRadius: currentRoute.name=="Settings" && currentRoute.state?.index==1 ?0:20,
           overflow: "hidden",
         }}
       >
@@ -87,7 +89,6 @@ function MyTabBar({ state, descriptors, navigation }) {
                 marginHorizontal: 16,
                 aspectRatio: 1,
                 borderRadius: 100,
-                paddingLeft:label=="Settings"?12:10,
                 paddingRight:label=="Notifications"?8:10,
                 paddingBottom:label=="Notifications"?6:10,
               }}
@@ -112,7 +113,7 @@ function MyTabBar({ state, descriptors, navigation }) {
 function Icon({ name, color }) {
   switch (name) {
     case "Settings":
-      return <User color={color}></User>;
+      return <Settings color={color}></Settings>;
     case "Home":
       return <Home color={color}></Home>;
     case "Devices":
