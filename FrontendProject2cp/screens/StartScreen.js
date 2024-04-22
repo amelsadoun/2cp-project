@@ -7,12 +7,11 @@ const yellow = "#F3F0A6";
 import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
 import { Animated } from "react-native";
+import { colors } from "../assets/colors";
 
 export default function StartScreen({ navigation }) {
   const buttons = [
-    { label: "Log in", routeName: "Login screen" },
-    { label: "Sign up", routeName: "Signup screen" },
-    { label: "Use as guest", routeName: "Main screen" },
+    { label: "Start using as a guest", routeName: "Main screen" },
   ];
 
   const [fontsLoaded] = useFonts(Fonts);
@@ -87,15 +86,15 @@ export default function StartScreen({ navigation }) {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: darkBlue,
-          height: "42%",
+          height: "30%",
           width: "105%",
           borderTopLeftRadius: 90,
           borderTopRightRadius: 90,
           paddingTop: 32,
           paddingBottom: "5%",
-          gap: 16,
+          gap: 25,
         }}
->
+      >
         {buttons.map((item) => (
           <NavButton
             key={item.label}
@@ -103,17 +102,36 @@ export default function StartScreen({ navigation }) {
             navigation={navigation}
           ></NavButton>
         ))}
-        <Pressable>
+        <View style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignContent: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text
+          style={{
+            fontFamily: "MontserratLight",
+            color: colors.white,
+            fontSize: 15,
+            textAlign: "center",
+          }}
+        >
+          Want to store your data across devices?
+        </Text>
+        <Pressable onPress={()=>navigation.navigate("Signup screen")}>
           <Text
             style={{
-              fontFamily: "MontserratLight",
+              fontFamily: "MontserratRegular",
               color: yellow,
               textDecorationLine: "underline",
+              textAlign: "center",
+              fontSize: 18,
             }}
           >
-            need help?
+           Register as a user
           </Text>
         </Pressable>
+        </View>
       </Animated.View>
     </View>
   );
@@ -126,8 +144,8 @@ function NavButton({ navigation, item }) {
         borderColor: "white",
         borderWidth: 1.5,
         borderStyle: "solid",
-        flex: 1,
         width: "66%",
+        height: 60,
         textAlign: "center",
         display: "flex",
         alignContent: "center",
@@ -143,7 +161,7 @@ function NavButton({ navigation, item }) {
         style={{
           fontFamily: "MontserratBold",
           fontSize: 18,
-          color: white,
+          color: colors.white,
           fontWeight: "regular",
         }}
       >

@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MainNav from "./MainNav";
 import PreviewScreen from "../screens/PreviewScreen";
+import AuthentificationNav from "./AuthentificationNav";
 
 const FirstStack = createNativeStackNavigator();
 
@@ -14,7 +14,7 @@ export default function PreviewNav() {
       }}
     >
       <FirstStack.Screen name="Preview screen" component={PreviewScreen} />
-      <FirstStack.Screen name="Main screen" component={MainNav} />
+      <FirstStack.Screen name="Auth screen" component={AuthentificationNav} />
     </FirstStack.Navigator>
   );
 }

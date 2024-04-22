@@ -40,7 +40,7 @@ const PreviewCarousel = ({ navigation }) => {
       body: "Control your smart home easier with our better features",
       imageKey: "image3",
       buttonText: "Start",
-      onPressNext: () => navigation.navigate("Main screen"),
+      onPressNext: () => navigation.navigate("Auth screen"),
     },
   ];
 

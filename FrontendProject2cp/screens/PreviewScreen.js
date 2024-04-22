@@ -5,7 +5,6 @@ const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
 import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
-import { Animated } from "react-native";
 import PreviewCarousel from "../components/PreviewCarousel";
 
 export default function PreviewScreen({ navigation }) {
@@ -25,7 +24,6 @@ export default function PreviewScreen({ navigation }) {
       }}
     >
       <PreviewCarousel navigation={navigation} />
-      
     </SafeAreaView>
   );
 }

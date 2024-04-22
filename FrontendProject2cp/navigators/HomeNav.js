@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DeviceInfoScreen from "../screens/DeviceInfoScreen";
 import DevicesList from "../screens/HomeScreen";
+import AddDeviceScreen from "../screens/AddDeviceScreen";
 const darkBlue = "#2F4062";
 const SecondStack = createNativeStackNavigator();
 
@@ -26,6 +27,10 @@ export default function HomeNav() {
         name="DeviceDetails"
         component={DeviceInfoScreen}
         options={{ title: "Device Details"}}
+      />
+         <SecondStack.Screen
+        name="Add device screen"
+        component={AddDeviceScreen}
       />
     </SecondStack.Navigator>
   );

@@ -21,14 +21,13 @@ export default function AuthentificationInput({
           backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
           paddingHorizontal: 10,
           width: 300,
-          height: 60,
-          paddingVertical:0
+          height: 50,
         }}
         textColor={colors.white}
         activeOutlineColor={colors.yellow}
         outlineColor={colors.white}
         placeholder={label}
-         label={label}
+        // label={label}
         placeholderTextColor={colors.white}
         outlineStyle={{
           borderRadius: 15,

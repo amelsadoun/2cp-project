@@ -21,7 +21,7 @@ export default function CarouselCardItem({ item, index, navigation, onPressNext 
     if (index < 2) {
       onPressNext();
     } else {
-      navigation.navigate("Main screen");
+      navigation.navigate("Auth screen");
     }
   };
   return (

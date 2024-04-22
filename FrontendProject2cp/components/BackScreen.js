@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, ScrollView, View } from "react-native";
 import { useTheme } from "../contexts/ThemeContext";
 const white="#FEFEFF";
 const darkBlue = "#2F4062";

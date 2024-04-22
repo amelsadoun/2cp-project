@@ -18,10 +18,9 @@ export default function HomeScreen({ navigation }) {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await axios.get(
-          "http://192.168.56.1:5000/api/device/user/65f564ce5af63d63941076db"
-        );
+        const response = await axios.get("http://192.168.56.1:5000/devices");
         setFetched(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching devices:", error);
       }
@@ -30,18 +29,22 @@ export default function HomeScreen({ navigation }) {
     fetchDevices();
   }, []);
 
-  const devicesData = [...(fetched.devices?.devices || [])];
-  console.log(fetched.devices?.devices);
+  const devicesData = [...(fetched || [])];
+  console.log(fetched);
 
   function onAddDevice() {
-    console.log("bonjour");
+    navigation.navigate("Add device screen");
+  }
+
+  if (!fetched) {
+    return <ActivityIndicator />;
   }
 
   const DevicesListItem = ({ item }) => (
     <TouchableOpacity
       onPress={
         item.name != "Add"
-          ? () => navigation.navigate("DeviceDetails", { deviceId: item._id })
+          ? () => navigation.navigate("DeviceDetails", { deviceId: item.id })
           : () => onAddDevice()
       }
       style={{
@@ -73,7 +76,7 @@ export default function HomeScreen({ navigation }) {
               fontFamily: "MontserratMedium",
             }}
           >
-            {item.name}
+            {item.deviceName}
           </Text>
         </>
       ) : (
@@ -104,7 +107,7 @@ export default function HomeScreen({ navigation }) {
               fontFamily: "MontserratSemiBold",
               fontSize: 20,
               paddingVertical: 13,
-              color: isDarkMode? colors.white: "black"
+              color: isDarkMode ? colors.white : "black",
             }}
           >
             Recent devices
@@ -114,7 +117,7 @@ export default function HomeScreen({ navigation }) {
         style={{ paddingHorizontal: 18 }}
         data={[...devicesData, { _id: "add", name: "Add" }]}
         renderItem={DevicesListItem}
-        keyExtractor={(item) => item._id.toString()}
+        keyExtractor={(item) => item.id}
       />
     </BackScreen>
   );

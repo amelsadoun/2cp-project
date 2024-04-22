@@ -9,8 +9,8 @@ import { useTheme } from "../contexts/ThemeContext";
 import { colors } from "../assets/colors";
 function MyTabBar({ state, descriptors, navigation, route }) {
   const { isDarkMode } = useTheme();
-  const currentRoute = state.routes[state.index]; 
-  //console.log(currentRoute.name)
+  const currentRoute = state.routes[state.index];
+ //console.log(currentRoute.name, currentRoute.state?.index)
 
   return (
     <View
@@ -32,8 +32,14 @@ function MyTabBar({ state, descriptors, navigation, route }) {
           alignItems: "center",
           justifyContent: "space-around",
           paddingVertical: 14,
-          borderTopLeftRadius: currentRoute.name=="Settings" && currentRoute.state?.index==1 ?0:20,
-          borderTopRightRadius: currentRoute.name=="Settings" && currentRoute.state?.index==1 ?0:20,
+          borderTopLeftRadius:
+            currentRoute.name == "Settings" || currentRoute.name == "Home" && currentRoute.state?.index == 1
+              ? 0
+              : 20,
+          borderTopRightRadius:
+          currentRoute.name == "Settings" || currentRoute.name == "Home" && currentRoute.state?.index == 1
+          ? 0
+              : 20,
           overflow: "hidden",
         }}
       >
@@ -80,28 +86,40 @@ function MyTabBar({ state, descriptors, navigation, route }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: isFocused ? (isDarkMode?colors.darkBlue:colors.darkerBlue) : "transparent",
                 flex: 1,
                 alignContent: "center",
                 alignItems: "center",
                 justifyContent: "center",
                 padding: 10,
-                marginHorizontal: 16,
                 aspectRatio: 1,
-                borderRadius: 100,
-                paddingRight:label=="Notifications"?8:10,
-                paddingBottom:label=="Notifications"?6:10,
+                paddingRight: label == "Notifications" ? 8 : 10,
+                paddingBottom: label == "Notifications" ? 6 : 10,
               }}
             >
-              <Svg
-                width={27}
-                height={28}
-                viewBox="0 0 27 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <View
+                style={{
+                  backgroundColor: isFocused
+                    ? isDarkMode
+                      ? colors.darkBlue
+                      : colors.darkerBlue
+                    : "transparent",
+                  borderRadius: 100,
+                  padding: 20,
+                }}
               >
-                <Icon name={label} color={isFocused?colors.yellow:"white"}></Icon>
-              </Svg>
+                <Svg
+                  width={27}
+                  height={28}
+                  viewBox="0 0 27 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <Icon
+                    name={label}
+                    color={isFocused ? colors.yellow : "white"}
+                  ></Icon>
+                </Svg>
+              </View>
             </Pressable>
           );
         })}

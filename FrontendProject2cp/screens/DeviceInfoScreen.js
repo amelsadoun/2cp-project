@@ -9,7 +9,6 @@ import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
 import ScreenTitle from "../components/ScreenTitle";
 const DeviceInfoScreen = ({ route }) => {
-
   const [fontsLoaded] = useFonts(Fonts);
 
   const { deviceId } = route.params;
@@ -21,10 +20,10 @@ const DeviceInfoScreen = ({ route }) => {
     const fetchDevice = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.56.1:5000/api/device/" + deviceId
+          "http://192.168.56.1:5000/devices/" + deviceId
         );
         setFetched(response.data);
-        setStatus(response.data.device?.status);
+        setStatus(response.data.device?.state);
       } catch (error) {
         console.error("Error fetching devices:", error);
       }
@@ -33,7 +32,9 @@ const DeviceInfoScreen = ({ route }) => {
     fetchDevice();
   }, []);
 
-  console.log(fetched.device);
+  const deviceName = fetched.device?.deviceName;
+
+  console.log(status);
 
   const toggleSwitch = () => {
     setStatus((previousState) => (previousState === "On" ? "Off" : "On"));
@@ -63,7 +64,7 @@ const DeviceInfoScreen = ({ route }) => {
             fontSize: 24,
           }}
         >
-          Device name: {fetched.device?.name}
+          Device name: {deviceName}
         </Text>
         <Switch
           trackColor={{ false: "#red", true: "#green" }}

@@ -100,9 +100,26 @@ export default function SettingsScreen({ navigation }) {
             }}
           ></Switch>
         </Pressable>
-        <SecondButton title="Help" route="FAQ screen" navigation={navigation} isDarkMode={isDarkMode} />
-        {isUserMode && (
-          <SecondButton title="Log out" route="" navigation={navigation} isDarkMode={isDarkMode}/>
+        <SecondButton
+          title="Help"
+          route="FAQ screen"
+          navigation={navigation}
+          isDarkMode={isDarkMode}
+        />
+        {isUserMode ? (
+          <SecondButton
+            title="Log out"
+            route=""
+            navigation={navigation}
+            isDarkMode={isDarkMode}
+          />
+        ) : (
+          <SecondButton
+            title="Save app data"
+            route="Signup screen"
+            navigation={navigation}
+            isDarkMode={isDarkMode}
+          />
         )}
       </View>
     </BackScreen>
@@ -156,10 +173,22 @@ function SecondButton({ title, navigation, route, isDarkMode }) {
         width: "100%",
       }}
     >
-      <Text style={{ fontSize: 19, fontFamily: "MontserratSemiBold", color: isDarkMode? colors.white: "black" }}>
+      <Text
+        style={{
+          fontSize: 19,
+          fontFamily: "MontserratSemiBold",
+          color: isDarkMode ? colors.white : "black",
+        }}
+      >
         {title}
       </Text>
-      <Text style={{ fontSize: 22, fontFamily: "MontserratSemiBold", color: isDarkMode? colors.white: "black"  }}>
+      <Text
+        style={{
+          fontSize: 22,
+          fontFamily: "MontserratSemiBold",
+          color: isDarkMode ? colors.white : "black",
+        }}
+      >
         {">"}
       </Text>
     </Pressable>
