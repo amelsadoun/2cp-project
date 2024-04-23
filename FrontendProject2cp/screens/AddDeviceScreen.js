@@ -3,11 +3,19 @@ import { Pressable, ScrollView, Text, StyleSheet } from "react-native";
 import BackScreen from "../components/BackScreen";
 import { colors } from "../assets/colors";
 import EditingInput from "../components/EditingInput";
+import { useTheme } from "../contexts/ThemeContext";
+
 export default function AddDeviceScreen({ navigation }) {
+  const { isDarkMode } = useTheme();
   const [deviceName, setDeviceName] = useState("");
   const [deviceType, setDeviceType] = useState("");
 
-  const addDevice = async (deviceName, state, userId) => {
+  const refreshDevicesList = navigation => {
+    // Use setParams to trigger a refresh of the devices list
+    navigation.setParams({ refresh: true });
+  };
+
+  const addDevice = async (deviceName, state) => {
     try {
       const response = await fetch("http://192.168.56.1:5000/devices/add", {
         method: "POST",
@@ -17,7 +25,6 @@ export default function AddDeviceScreen({ navigation }) {
         body: JSON.stringify({
           deviceName: deviceName,
           state: state,
-          userId: userId,
         }),
       });
 
@@ -35,14 +42,17 @@ export default function AddDeviceScreen({ navigation }) {
   };
 
   function onAddDevice() {
-    addDevice(deviceName, "Off", 5);
+    addDevice(deviceName, "Off");
   }
 
   return (
     <BackScreen>
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
-        style={styles.scrollView}
+        style={{
+          ...styles.scrollView,
+          backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
+        }}
       >
         <EditingInput
           label="Device name"
@@ -58,7 +68,7 @@ export default function AddDeviceScreen({ navigation }) {
           style={styles.addButton}
           onPress={() => {
             onAddDevice();
-            navigation.navigate("DevicesList");
+            navigation.navigate("DevicesList", {refreshDevicesList});
           }}
         >
           <Text style={styles.addButtonText}>Add device</Text>
@@ -79,7 +89,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignContent: "center",
-    backgroundColor: colors.darkBlue,
     borderTopLeftRadius: 100,
     borderTopRightRadius: 100,
     width: "100%",

@@ -22,12 +22,13 @@ export default function AuthentificationInput({
           paddingHorizontal: 10,
           width: 300,
           height: 50,
+          justifyContent: "center",
         }}
         textColor={colors.white}
         activeOutlineColor={colors.yellow}
         outlineColor={colors.white}
         placeholder={label}
-        // label={label}
+        label={label}
         placeholderTextColor={colors.white}
         outlineStyle={{
           borderRadius: 15,

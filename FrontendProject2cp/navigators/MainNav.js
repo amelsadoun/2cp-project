@@ -43,7 +43,6 @@ export default function MainNav() {
       tabBar={(props) => keyboardShow?(<></>): <MyTabBar {...props} />}
     >
       <Tab.Screen name="Home" component={HomeNav} options={{ title: "Home" }} />
-      <Tab.Screen name="Notifications" component={NotificationsScreen} />
       <Tab.Screen name="Settings" component={SettingsNav} />
     </Tab.Navigator>
   );

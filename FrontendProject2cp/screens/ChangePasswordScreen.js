@@ -21,14 +21,7 @@ export default function ChangePasswordScreen() {
   return (
     <BackScreen>
       <ScreenTitle title="Change Password"></ScreenTitle>
-      <Avatar.Image
-        style={{
-          alignSelf: "center",
-          marginBottom: 15,
-        }}
-        size={130}
-        source={require("../assets/avatar.png")}
-      />
+
       <ScrollView
         contentContainerStyle={{
           alignItems: "center",
@@ -44,7 +37,9 @@ export default function ChangePasswordScreen() {
           width: "105%",
           borderTopLeftRadius: 80,
           borderTopRightRadius: 80,
-          paddingTop: 30,
+          paddingVertical: 30,
+          position: "absolute",
+          bottom:0,
         }}
       >
         <EditingInput

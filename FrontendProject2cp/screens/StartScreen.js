@@ -39,14 +39,13 @@ export default function StartScreen({ navigation }) {
         resizeMode="cover"
         style={{
           backgroundColor: white,
-          marginTop: 30,
-          paddingTop: 50,
+          marginTop: 50,
           flex: 1,
           resizeMode: "cover",
-          width: 380,
           height: "auto",
           display: "flex",
           gap: 20,
+          width:"100%",
           alignSelf: "center",
           flexDirection: "column",
           alignItems: "center",
@@ -61,6 +60,7 @@ export default function StartScreen({ navigation }) {
           style={{
             fontSize: 36,
             fontFamily: "MontserratBold",
+            marginTop: 50,
           }}
         >
           Welcome to
@@ -155,7 +155,7 @@ function NavButton({ navigation, item }) {
         fontSize: "medium",
         borderRadius: 20,
       }}
-      onPress={() => navigation.navigate(item.routeName)}
+      onPress={() => {navigation.navigate(item.routeName)}}
     >
       <Text
         style={{

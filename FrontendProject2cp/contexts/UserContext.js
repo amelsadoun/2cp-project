@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [isUserMode, setIsUserMode] = useState(true);
+  const [isUserMode, setIsUserMode] = useState(false);
 
   const toggleUserMode = () => {
     setIsUserMode((prevMode) => !prevMode);
