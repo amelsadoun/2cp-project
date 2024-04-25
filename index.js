@@ -23,14 +23,33 @@ const init = () => {
 
 // Add a device
 const addDevice = (deviceName, deviceType, deviceStatus) => {
-    const sql = 'INSERT INTO devices (deviceName, deviceType, deviceStatus) VALUES (?, ?, ?)';
+    // Check if the device name already exists
+    const checkIfExistsSql = 'SELECT COUNT(*) AS count FROM devices WHERE deviceName = ?';
     return new Promise((resolve, reject) => {
-        db.run(sql, [deviceName, deviceType, deviceStatus], function (err) {
-            if (err) reject(err);
-            else resolve(this.lastID);
+        db.get(checkIfExistsSql, [deviceName], (err, row) => {
+            if (err) {
+                reject(err);
+            } else {
+                const deviceCount = row.count;
+                if (deviceCount > 0) {
+                    // Device with the same name already exists, reject adding the new device
+                    reject(new Error('Device with the same name already exists'));
+                } else {
+                    // Device name is unique, add the device
+                    const insertSql = 'INSERT INTO devices (deviceName, deviceType, deviceStatus) VALUES (?, ?, ?)';
+                    db.run(insertSql, [deviceName, deviceType, deviceStatus], function (err) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(this.lastID);
+                        }
+                    });
+                }
+            }
         });
     });
 };
+
 
 // Fetch all devices
 const fetchDevices = () => {
@@ -45,25 +64,63 @@ const fetchDevices = () => {
 
 // Delete a device
 const deleteDevice = (id) => {
-    const sql = 'DELETE FROM devices WHERE id = ?';
+    // Check if the device exists
+    const checkIfExistsSql = 'SELECT COUNT(*) AS count FROM devices WHERE id = ?';
     return new Promise((resolve, reject) => {
-        db.run(sql, id, function (err) {
-            if (err) reject(err);
-            else resolve(this.changes);
+        db.get(checkIfExistsSql, [id], (err, row) => {
+            if (err) {
+                reject(err);
+            } else {
+                const deviceCount = row.count;
+                if (deviceCount === 0) {
+                    // Device with the specified ID doesn't exist, reject the promise
+                    reject(new Error('Device does not exist'));
+                } else {
+                    // Device exists, delete it
+                    const deleteSql = 'DELETE FROM devices WHERE id = ?';
+                    db.run(deleteSql, id, function (err) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(this.changes);
+                        }
+                    });
+                }
+            }
         });
     });
 };
 
+
 // Update a device
 const updateDevice = (deviceName, deviceType, deviceStatus, id) => {
-    const sql = 'UPDATE devices SET deviceName = ?, deviceType = ?, deviceStatus = ? WHERE id = ?';
+    // Check if the device exists
+    const checkIfExistsSql = 'SELECT COUNT(*) AS count FROM devices WHERE id = ?';
     return new Promise((resolve, reject) => {
-        db.run(sql, [deviceName, deviceType, deviceStatus, id], function (err) {
-            if (err) reject(err);
-            else resolve(this.changes);
+        db.get(checkIfExistsSql, [id], (err, row) => {
+            if (err) {
+                reject(err);
+            } else {
+                const deviceCount = row.count;
+                if (deviceCount === 0) {
+                    // Device with the specified ID doesn't exist, reject the promise
+                    reject(new Error('Device does not exist'));
+                } else {
+                    // Device exists, update it
+                    const updateSql = 'UPDATE devices SET deviceName = ?, deviceType = ?, deviceStatus = ? WHERE id = ?';
+                    db.run(updateSql, [deviceName, deviceType, deviceStatus, id], function (err) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(this.changes);
+                        }
+                    });
+                }
+            }
         });
     });
 };
+
 
 // Remove all devices
 const removeAllDevices = () => {
