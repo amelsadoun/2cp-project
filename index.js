@@ -150,8 +150,9 @@ init()
         console.log("Database initialized successfully");
 
         // Test adding a device
-        return addDevice("LightSwitch1", "Light", "Active");
+        //return addDevice("LightSwitch123", "Light", "Active");
     })
+/*
     .then((deviceId) => {
         console.log("Device added successfully with ID:", deviceId);
 
@@ -175,13 +176,17 @@ init()
     .then((rowsAffected) => {
         console.log("Device deleted successfully. Rows affected:", rowsAffected);
 
-        // Test removing all devices
+       //  Test removing all devices
         return removeAllDevices();
     })
+    
     .then(() => {
         console.log("All devices removed successfully");
     })
+    
     .catch((error) => {
         console.error("Error:", error);
     });
 
+*/
+    
