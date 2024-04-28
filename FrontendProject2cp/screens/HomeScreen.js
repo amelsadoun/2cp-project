@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from "react-native";
-import axios from "axios";
 import { useFonts } from "expo-font";
 import BackScreen from "../components/BackScreen";
 import Fonts from "../components/Fonts";

@@ -1,81 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Switch, Pressable, ActivityIndicator } from "react-native";
-import axios from "axios";
 import { useFonts } from "expo-font";
 import BackScreen from "../components/BackScreen";
 import Fonts from "../components/Fonts";
 import { colors } from "../assets/colors";
+import { deleteDevice, fetchDevices, updateDevice } from "../helpers";
 
 const DeviceInfoScreen = ({ navigation, route }) => {
   const [fontsLoaded] = useFonts(Fonts);
   const { deviceId } = route.params;
-  const [fetched, setFetched] = useState({});
-  const [status, setStatus] = useState(null);
+  const [device, setDevice] = useState();
+  const [status, setStatus] = useState(device?.deviceStatus);
 
   useEffect(() => {
-    const fetchDevice = async () => {
+    const fetchAndSetDevices = async () => {
       try {
-        const response = await axios.get(
-          `http://192.168.56.1:5000/devices/${deviceId}`
-        );
-        setFetched(response.data);
-        setStatus(response.data.device?.state);
+        const fetchedDevices = await fetchDevices();
+        fetchedDevices.forEach((item) => {
+          if (item.id == deviceId) {
+            setDevice(item);
+          }
+        });
       } catch (error) {
-        console.error("Error fetching device:", error);
+        console.error("Error fetching devices:", error);
       }
     };
 
-    fetchDevice();
+    // Fetch devices when the component mounts
+    fetchAndSetDevices();
   }, []);
-
-  const removeDevice = async () => {
-    try {
-      const response = await fetch(
-        `http://192.168.56.1:5000/devices/${deviceId}`,
-        {
-          method: "DELETE",
-        }
-      );
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Success", data.message);
-      } else {
-        console.error("Error", data.message);
-      }
-    } catch (error) {
-      console.error("Error", "Internal Server Error");
-    }
-  };
-
-  const updateDeviceStatus = async (newStatus) => {
-    try {
-      const response = await axios.put(
-        `http://192.168.56.1:5000/devices/update/${deviceId}`,
-        {
-          state: newStatus ? "On" : "Off",
-        }
-      );
-
-      if (response.ok) {
-        console.log("Device status updated successfully");
-      } else {
-        console.error("Error updating device status:", response.data.error);
-      }
-    } catch (error) {
-      console.error("Error updating device status:", error);
-    }
-  };
 
   const toggleSwitch = () => {
     const newStatus = status === "On" ? "Off" : "On";
     setStatus(newStatus);
-    updateDeviceStatus(newStatus === "On");
+    updateDevice(device.deviceName, device.deviceType, newStatus, deviceId); // Use newStatus here
+    console.log(newStatus); // Log newStatus instead of device?.deviceStatus
   };
 
-  const deviceName = fetched.device?.deviceName;
-
-  if (status === null || !fontsLoaded) {
+  
+  if (!fontsLoaded || !device) {
     return <ActivityIndicator />;
   }
 
@@ -83,7 +46,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
     <BackScreen>
       <View style={{ alignItems: "center", paddingTop: 20 }}>
         <Text style={{ fontFamily: "MontserratBold", fontSize: 24 }}>
-          Device name: {deviceName}
+          Device name: {device.deviceName}
         </Text>
         <Switch
           trackColor={{ false: colors.red, true: colors.green }}
@@ -108,7 +71,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
         </View>
         <Pressable
           onPress={() => {
-            removeDevice();
+            deleteDevice(deviceId);
             navigation.goBack();
           }}
         >

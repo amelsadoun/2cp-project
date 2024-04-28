@@ -1,7 +1,7 @@
 import * as SQLite from 'expo-sqlite';
 
 // Open or create the database
-const db = SQLite.openDatabase('./devices.db');
+const db = SQLite.openDatabase('devices.db');
 
 // Initialize database table
 export const init = () => {
@@ -50,7 +50,7 @@ export const fetchDevices = () => {
 };
 
 // Delete a device
-const deleteDevice = (id) => {
+export const deleteDevice = (id) => {
     return new Promise((resolve, reject) => {
         db.transaction(tx => {
             tx.executeSql(
@@ -64,7 +64,7 @@ const deleteDevice = (id) => {
 };
 
 // Update a device
-const updateDevice = (deviceName, deviceType, deviceStatus, id) => {
+export const updateDevice = (deviceName, deviceType, deviceStatus, id) => {
     return new Promise((resolve, reject) => {
         db.transaction(tx => {
             tx.executeSql(
