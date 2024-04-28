@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import { useFonts } from "expo-font";
 import Fonts from "../components/Fonts";
 import ScreenTitle from "../components/ScreenTitle";
+
 export default function DevicesScreen() {
   const [fontsLoaded] = useFonts(Fonts);
 

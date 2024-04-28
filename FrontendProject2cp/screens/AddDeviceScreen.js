@@ -1,48 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, StyleSheet } from "react-native";
 import BackScreen from "../components/BackScreen";
 import { colors } from "../assets/colors";
 import EditingInput from "../components/EditingInput";
 import { useTheme } from "../contexts/ThemeContext";
+import { init, addDevice } from "../helpers/index";
 
 export default function AddDeviceScreen({ navigation }) {
   const { isDarkMode } = useTheme();
   const [deviceName, setDeviceName] = useState("");
   const [deviceType, setDeviceType] = useState("");
 
-  const refreshDevicesList = navigation => {
+  init()
+    .then(() => {
+      console.log("Database initialized successfully");
+    })
+    .catch((error) => {
+      console.error("Error initializing database:", error);
+    }); // Add a device
+
+  const refreshDevicesList = (navigation) => {
     // Use setParams to trigger a refresh of the devices list
     navigation.setParams({ refresh: true });
   };
 
-  const addDevice = async (deviceName, state) => {
-    try {
-      const response = await fetch("http://192.168.56.1:5000/devices/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          deviceName: deviceName,
-          state: state,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add device");
-      }
-
-      const data = await response.json();
-      console.log(data.message); // This will log the message from the server
-      // Optionally, you can perform any additional actions after successfully adding the device
-    } catch (error) {
-      console.error("Error adding device:", error.message);
-      // Handle error scenarios in your React Native application
-    }
-  };
+  //  useEffect(() => {
+  //     // Initialize the database when the component mounts
+  //     init()
+  //       .then(() => {
+  //           console.log("Database initialized successfully");
+  //       })
+  //       .catch(error => {
+  //           console.error("Error initializing database:", error);
+  //       });
+  //   }, []);
 
   function onAddDevice() {
-    addDevice(deviceName, "Off");
+    addDevice(deviceName, deviceType, "off")
+      .then(() => {
+        console.log("Device added successfully");
+      })
+      .catch((error) => {
+        console.error("Error adding device:", error);
+      });
   }
 
   return (
@@ -68,7 +68,7 @@ export default function AddDeviceScreen({ navigation }) {
           style={styles.addButton}
           onPress={() => {
             onAddDevice();
-            navigation.navigate("DevicesList", {refreshDevicesList});
+            navigation.navigate("DevicesList", { refreshDevicesList });
           }}
         >
           <Text style={styles.addButtonText}>Add device</Text>

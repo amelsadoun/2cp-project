@@ -8,33 +8,39 @@ import ScreenTitle from "../components/ScreenTitle";
 import { useTheme } from "../contexts/ThemeContext";
 import { colors } from "../assets/colors";
 import { ThemeProvider } from "../contexts/ThemeContext";
+import { fetchDevices } from "../helpers";
 
 export default function HomeScreen({ navigation }) {
   const { isDarkMode } = useTheme();
   const [fontsLoaded] = useFonts(Fonts);
-  const [fetched, setFetched] = useState([]);
+  const [devices, setDevices] = useState([]);
 
   useEffect(() => {
-    const fetchDevices = async () => {
+    const fetchAndSetDevices = async () => {
       try {
-        const response = await axios.get("http://192.168.56.1:5000/devices");
-        setFetched(response.data);
+        const fetchedDevices = await fetchDevices();
+        setDevices(fetchedDevices);
       } catch (error) {
         console.error("Error fetching devices:", error);
       }
     };
-
-    fetchDevices();
-    const intervalId = setInterval(fetchDevices, 3000);
-
+  
+    // Fetch devices when the component mounts
+    fetchAndSetDevices();
+  
+    // Set interval to fetch devices every 1000 milliseconds (1 second)
+    const intervalId = setInterval(fetchAndSetDevices, 1000);
+  
+    // Clean up interval when component unmounts
     return () => clearInterval(intervalId);
   }, []);
+  
 
   const onAddDevice = () => {
     navigation.navigate("Add device screen");
   };
 
-  if (!fetched) {
+  if (!fontsLoaded || !devices ) {
     return <ActivityIndicator />;
   }
 
@@ -66,7 +72,7 @@ export default function HomeScreen({ navigation }) {
         }
         numColumns={2}
         style={styles.flatList}
-        data={[...fetched, { _id: "add", name: "Add" }]}
+        data={[...devices, { _id: "add", name: "Add" }]}
         renderItem={DevicesListItem}
         keyExtractor={(item) => item.id}
       />
