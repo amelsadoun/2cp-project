@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from "react-native";
+import {
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { useFonts } from "expo-font";
 import BackScreen from "../components/BackScreen";
 import Fonts from "../components/Fonts";
@@ -15,12 +21,12 @@ export default function HomeScreen({ navigation }) {
   const [devices, setDevices] = useState([]);
 
   init()
-  .then(() => {
-   // console.log("Database initialized successfully");
-  })
-  .catch((error) => {
-    console.error("Error initializing database:", error);
-  }); // Add a device
+    .then(() => {
+      // console.log("Database initialized successfully");
+    })
+    .catch((error) => {
+      console.error("Error initializing database:", error);
+    }); // Add a device
 
   useEffect(() => {
     const fetchAndSetDevices = async () => {
@@ -31,23 +37,22 @@ export default function HomeScreen({ navigation }) {
         console.error("Error fetching devices:", error);
       }
     };
-  
+
     // Fetch devices when the component mounts
     fetchAndSetDevices();
-  
+
     // Set interval to fetch devices every 1000 milliseconds (1 second)
     const intervalId = setInterval(fetchAndSetDevices, 1000);
-  
+
     // Clean up interval when component unmounts
     return () => clearInterval(intervalId);
   }, []);
-  
 
   const onAddDevice = () => {
     navigation.navigate("Add device screen");
   };
 
-  if (!fontsLoaded || !devices ) {
+  if (!fontsLoaded || !devices) {
     return <ActivityIndicator />;
   }
 
@@ -65,8 +70,18 @@ export default function HomeScreen({ navigation }) {
         backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
       }}
     >
-      <Image source={item.name !== "Add" ? require("../assets/Light.png") : require("../assets/AddIcon.png")} />
-      <Text style={styles.deviceText}>{item.name !== "Add" ? item.deviceName : "add device"}</Text>
+      <Image
+        source={
+          item.name !== "Add"
+            ? require("../assets/Light.png")
+            : require("../assets/AddIcon.png")
+        }
+      />
+      <Text style={styles.deviceText}>
+        {item.name !== "Add"
+          ? item.deviceName + " status: " + item.deviceStatus
+          : "add device"}
+      </Text>
     </TouchableOpacity>
   );
 
@@ -75,7 +90,14 @@ export default function HomeScreen({ navigation }) {
       <ScreenTitle title="Home" />
       <FlatList
         ListHeaderComponent={
-          <Text style={{ ...styles.listHeader, color: isDarkMode ? colors.white : "black" }}>Recent devices</Text>
+          <Text
+            style={{
+              ...styles.listHeader,
+              color: isDarkMode ? colors.white : "black",
+            }}
+          >
+            Recent devices
+          </Text>
         }
         numColumns={2}
         style={styles.flatList}
@@ -110,6 +132,7 @@ const styles = {
     fontSize: 18,
     fontFamily: "MontserratMedium",
     marginVertical: 4,
+
   },
   listHeader: {
     fontFamily: "MontserratSemiBold",

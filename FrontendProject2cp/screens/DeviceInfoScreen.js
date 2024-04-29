@@ -19,7 +19,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
         fetchedDevices.forEach((item) => {
           if (item.id == deviceId) {
             setDevice(item);
-            setStatus(item.deviceStatus)
+            setStatus(item.deviceStatus);
           }
         });
       } catch (error) {
@@ -34,27 +34,39 @@ const DeviceInfoScreen = ({ navigation, route }) => {
   const toggleSwitch = async () => {
     const newStatus = status === "On" ? "Off" : "On";
     setStatus(newStatus); // Update status immediately
-    await updateDevice(device.deviceName, device.deviceType, newStatus, deviceId)
-    .then(() => {
-      console.log("Device updated successfully, new status: "+device.deviceStatus);
-    })
-    .catch((error) => {
-      console.error("Error updating device:", error);
-    });
-    console.log("device: " + device?.deviceStatus + " newStatus: " + newStatus + " status: " + status);
+    await updateDevice(
+      device.deviceName,
+      device.deviceType,
+      newStatus,
+      deviceId
+    )
+      .then(() => {
+        console.log(
+          "Device updated successfully, new status: " + device.deviceStatus
+        );
+      })
+      .catch((error) => {
+        console.error("Error updating device:", error);
+      });
+    // console.log("device: " + device?.deviceStatus + " newStatus: " + newStatus + " status: " + status);
   };
-  
-  
 
-  
   if (!fontsLoaded || !device) {
     return <ActivityIndicator />;
   }
 
   return (
     <BackScreen>
-      <View style={{ alignItems: "center", paddingTop: 20 }}>
-        <Text style={{ fontFamily: "MontserratBold", fontSize: 24 }}>
+      <View
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-around",
+          paddingTop: 20,
+          height: "100%"
+        }}
+      >
+        <Text style={{ fontFamily: "MontserratBold", fontSize: 24}}>
           Device name: {device.deviceName}
         </Text>
         <Switch
@@ -66,7 +78,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
         />
         <View style={{ flexDirection: "row" }}>
           <Text style={{ fontFamily: "MontserratRegular", fontSize: 20 }}>
-            The light is
+            The device is
           </Text>
           <Text
             style={{
