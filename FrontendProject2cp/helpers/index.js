@@ -70,6 +70,7 @@ export const updateDevice = (deviceName, deviceType, deviceStatus, id) => {
             tx.executeSql(
                 'UPDATE devices SET deviceName = ?, deviceType = ?, deviceStatus = ? WHERE id = ?',
                 [deviceName, deviceType, deviceStatus, id],
+                console.log(deviceName+" in index: "+deviceStatus),
                 (_, { rowsAffected }) => resolve(rowsAffected),
                 (_, error) => reject(error)
             );

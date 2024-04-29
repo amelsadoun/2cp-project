@@ -19,6 +19,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
         fetchedDevices.forEach((item) => {
           if (item.id == deviceId) {
             setDevice(item);
+            setStatus(item.deviceStatus)
           }
         });
       } catch (error) {
@@ -30,12 +31,20 @@ const DeviceInfoScreen = ({ navigation, route }) => {
     fetchAndSetDevices();
   }, []);
 
-  const toggleSwitch = () => {
+  const toggleSwitch = async () => {
     const newStatus = status === "On" ? "Off" : "On";
-    setStatus(newStatus);
-    updateDevice(device.deviceName, device.deviceType, newStatus, deviceId); // Use newStatus here
-    console.log(newStatus); // Log newStatus instead of device?.deviceStatus
+    setStatus(newStatus); // Update status immediately
+    await updateDevice(device.deviceName, device.deviceType, newStatus, deviceId)
+    .then(() => {
+      console.log("Device updated successfully, new status: "+device.deviceStatus);
+    })
+    .catch((error) => {
+      console.error("Error updating device:", error);
+    });
+    console.log("device: " + device?.deviceStatus + " newStatus: " + newStatus + " status: " + status);
   };
+  
+  
 
   
   if (!fontsLoaded || !device) {
@@ -62,7 +71,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
           <Text
             style={{
               fontFamily: "MontserratBold",
-              color: status === "On" ? colors.green : colors.red,
+              color: device?.deviceStatus === "On" ? colors.green : colors.red,
               fontSize: 20,
             }}
           >

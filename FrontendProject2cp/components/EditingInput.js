@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import Fonts from "./Fonts";
 import { useTheme } from "../contexts/ThemeContext";
 import { colors } from "../assets/colors";
+
 export default function AuthentificationInput({
   label,
   icon,
@@ -24,6 +25,7 @@ export default function AuthentificationInput({
           height: 50,
           justifyContent: "center",
         }}
+        contentStyle={{}}
         textColor={colors.white}
         activeOutlineColor={colors.yellow}
         outlineColor={colors.white}

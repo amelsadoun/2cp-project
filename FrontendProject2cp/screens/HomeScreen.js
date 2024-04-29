@@ -7,12 +7,20 @@ import ScreenTitle from "../components/ScreenTitle";
 import { useTheme } from "../contexts/ThemeContext";
 import { colors } from "../assets/colors";
 import { ThemeProvider } from "../contexts/ThemeContext";
-import { fetchDevices } from "../helpers";
+import { fetchDevices, init } from "../helpers";
 
 export default function HomeScreen({ navigation }) {
   const { isDarkMode } = useTheme();
   const [fontsLoaded] = useFonts(Fonts);
   const [devices, setDevices] = useState([]);
+
+  init()
+  .then(() => {
+   // console.log("Database initialized successfully");
+  })
+  .catch((error) => {
+    console.error("Error initializing database:", error);
+  }); // Add a device
 
   useEffect(() => {
     const fetchAndSetDevices = async () => {
@@ -83,7 +91,7 @@ const styles = {
   deviceItem: {
     flex: 1,
     padding: 20,
-    maxWidth: 176,
+    maxWidth: "50%",
     aspectRatio: 1,
     margin: 5,
     borderRadius: 25,

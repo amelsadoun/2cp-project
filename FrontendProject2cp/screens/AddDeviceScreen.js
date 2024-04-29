@@ -11,14 +11,7 @@ export default function AddDeviceScreen({ navigation }) {
   const [deviceName, setDeviceName] = useState("");
   const [deviceType, setDeviceType] = useState("");
 
-  init()
-    .then(() => {
-      console.log("Database initialized successfully");
-    })
-    .catch((error) => {
-      console.error("Error initializing database:", error);
-    }); // Add a device
-
+ 
   const refreshDevicesList = (navigation) => {
     // Use setParams to trigger a refresh of the devices list
     navigation.setParams({ refresh: true });
