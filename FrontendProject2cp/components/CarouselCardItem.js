@@ -1,21 +1,33 @@
 import React from "react";
-import { View, Text, Dimensions, Image, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  Image,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import { useFonts } from "expo-font";
 import Fonts from "./Fonts";
 
-export const SLIDER_WIDTH = Dimensions.get("window").width+20;
+export const SLIDER_WIDTH = Dimensions.get("window").width + 20;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
-export const screenHeight = Dimensions.get("window").height+50;
+export const screenHeight = Dimensions.get("window").height + 50;
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
 const images = {
   image1: require("../assets/first start page.png"),
-  //image2: require("../assets/second start page.png"),
+  image2: require("../assets/second start page.png"),
   image3: require("../assets/third start page.png"),
 };
 
-export default function CarouselCardItem({ item, index, navigation, onPressNext }) {
+export default function CarouselCardItem({
+  item,
+  index,
+  navigation,
+  onPressNext,
+}) {
   const imageSource = images[item.imageKey];
   const handleButtonPress = () => {
     if (index < 2) {
@@ -23,6 +35,8 @@ export default function CarouselCardItem({ item, index, navigation, onPressNext 
     } else {
       navigation.navigate("Auth screen");
     }
+
+    if (!images.image1) return <ActivityIndicator></ActivityIndicator>;
   };
   return (
     <View
@@ -84,7 +98,7 @@ export default function CarouselCardItem({ item, index, navigation, onPressNext 
           backgroundColor: white,
           borderRadius: 10,
           width: "50%",
-          padding: "3%"
+          padding: "3%",
         }}
         onPress={handleButtonPress}
       >
@@ -93,7 +107,7 @@ export default function CarouselCardItem({ item, index, navigation, onPressNext 
             color: darkBlue,
             fontSize: 17,
             textAlign: "center",
-            fontFamily: "MontserratSemiBold"
+            fontFamily: "MontserratSemiBold",
           }}
         >
           {item.buttonText}
