@@ -70,36 +70,6 @@ export default function SettingsScreen({ navigation }) {
         >
           <ThemeSwitch></ThemeSwitch>
         </SwitchButton>
-        <Pressable
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
-            borderRadius: 20,
-            gap: 10,
-            paddingHorizontal: 15,
-          }}
-        >
-          <View style={{ display: "flex", flexDirection: "row", gap: 10 }}>
-            <Icon source="bell" color={colors.white} size={20}></Icon>
-            <Text
-              style={{
-                color: colors.white,
-                fontFamily: "MontserratRegular",
-              }}
-            >
-              Push notifications
-            </Text>
-          </View>
-          <Switch
-            style={{
-              marginTop: 0,
-            }}
-          ></Switch>
-        </Pressable>
         <SecondButton
           title="Help"
           route="FAQ screen"
@@ -115,7 +85,7 @@ export default function SettingsScreen({ navigation }) {
           />
         ) : (
           <SecondButton
-            title="Save app data"
+            title="Remove app data"
             route="Signup screen"
             navigation={navigation}
             isDarkMode={isDarkMode}

@@ -10,7 +10,7 @@ import { colors } from "../assets/colors";
 function MyTabBar({ state, descriptors, navigation, route }) {
   const { isDarkMode } = useTheme();
   const currentRoute = state.routes[state.index];
- //console.log(currentRoute.name, currentRoute.state?.index)
+  //console.log(currentRoute.name, currentRoute.state?.index)
 
   return (
     <View
@@ -33,12 +33,12 @@ function MyTabBar({ state, descriptors, navigation, route }) {
           justifyContent: "space-around",
           paddingVertical: 14,
           borderTopLeftRadius:
-            currentRoute.name == "Settings" || currentRoute.name == "Home" && currentRoute.state?.index == 1
+            currentRoute.name == "Home" && currentRoute.state?.index == 1
               ? 0
               : 20,
           borderTopRightRadius:
-          currentRoute.name == "Settings" || currentRoute.name == "Home" && currentRoute.state?.index == 1
-          ? 0
+            currentRoute.name == "Home" && currentRoute.state?.index == 1
+              ? 0
               : 20,
           overflow: "hidden",
         }}

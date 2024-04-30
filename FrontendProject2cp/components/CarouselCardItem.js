@@ -11,7 +11,7 @@ const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
 const images = {
   image1: require("../assets/first start page.png"),
-  image2: require("../assets/second start page.png"),
+  //image2: require("../assets/second start page.png"),
   image3: require("../assets/third start page.png"),
 };
 

@@ -21,7 +21,7 @@ export default function HomeNav() {
       <SecondStack.Screen
         name="DevicesList"
         component={DevicesList}
-        options={{ title: "Devices" }}
+        options={{ title: "Devices", headerBackButtonMenuEnabled: true }}
       />
       <SecondStack.Screen
         name="DeviceDetails"
