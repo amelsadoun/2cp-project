@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -28,6 +28,8 @@ export default function CarouselCardItem({
   navigation,
   onPressNext,
 }) {
+  const [isLoading, setIsLoading] = useState(true);
+
   const imageSource = images[item.imageKey];
   const handleButtonPress = () => {
     if (index < 2) {
@@ -35,9 +37,8 @@ export default function CarouselCardItem({
     } else {
       navigation.navigate("Auth screen");
     }
-
-    if (!images.image1) return <ActivityIndicator></ActivityIndicator>;
   };
+
   return (
     <View
       style={{
@@ -59,6 +60,7 @@ export default function CarouselCardItem({
       }}
       key={index}
     >
+      {isLoading && <ActivityIndicator />}
       <Image
         source={imageSource}
         style={{
@@ -66,7 +68,9 @@ export default function CarouselCardItem({
           height: screenHeight,
           position: "absolute",
         }}
+        onLoadEnd={() => setIsLoading(false)} // Set isLoading to false when image loading is complete
       />
+      {console.log("image: "+imageSource)}
       <Text
         style={{
           textAlign: "center",

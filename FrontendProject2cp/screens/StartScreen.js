@@ -10,9 +10,7 @@ import { Animated } from "react-native";
 import { colors } from "../assets/colors";
 
 export default function StartScreen({ navigation }) {
-  const buttons = [
-    { label: "Start using as a guest", routeName: "Main screen" },
-  ];
+  const buttons = [{ label: "Start now!", routeName: "Main screen" }];
 
   const [fontsLoaded] = useFonts(Fonts);
 
@@ -45,7 +43,7 @@ export default function StartScreen({ navigation }) {
           height: "auto",
           display: "flex",
           gap: 20,
-          width:"100%",
+          width: "100%",
           alignSelf: "center",
           flexDirection: "column",
           alignItems: "center",
@@ -75,7 +73,7 @@ export default function StartScreen({ navigation }) {
             marginHorizontal: "13%",
           }}
         >
-          one app for all smart home elements
+          One app for all smart home elements.
         </Text>
       </ImageBackground>
       <Animated.View
@@ -86,7 +84,7 @@ export default function StartScreen({ navigation }) {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: darkBlue,
-          height: "30%",
+          height: "25%",
           width: "105%",
           borderTopLeftRadius: 90,
           borderTopRightRadius: 90,
@@ -102,35 +100,24 @@ export default function StartScreen({ navigation }) {
             navigation={navigation}
           ></NavButton>
         ))}
-        <View style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignContent: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text
+        <View
           style={{
-            fontFamily: "MontserratLight",
-            color: colors.white,
-            fontSize: 15,
-            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignContent: "center",
+            justifyContent: "center",
           }}
         >
-          Want to store your data across devices?
-        </Text>
-        <Pressable onPress={()=>navigation.navigate("Signup screen")}>
           <Text
             style={{
-              fontFamily: "MontserratRegular",
-              color: yellow,
-              textDecorationLine: "underline",
+              fontFamily: "MontserratLight",
+              color: colors.white,
+              fontSize: 15,
               textAlign: "center",
-              fontSize: 18,
             }}
           >
-           Register as a user
+            Unlock the smart potential of your home.
           </Text>
-        </Pressable>
         </View>
       </Animated.View>
     </View>
@@ -155,7 +142,9 @@ function NavButton({ navigation, item }) {
         fontSize: "medium",
         borderRadius: 20,
       }}
-      onPress={() => {navigation.navigate(item.routeName)}}
+      onPress={() => {
+        navigation.navigate(item.routeName);
+      }}
     >
       <Text
         style={{

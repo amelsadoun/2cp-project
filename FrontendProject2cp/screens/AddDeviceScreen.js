@@ -4,14 +4,14 @@ import BackScreen from "../components/BackScreen";
 import { colors } from "../assets/colors";
 import EditingInput from "../components/EditingInput";
 import { useTheme } from "../contexts/ThemeContext";
-import { init, addDevice } from "../helpers/index";
+import { addDevice } from "../helpers/index";
 
 export default function AddDeviceScreen({ navigation }) {
   const { isDarkMode } = useTheme();
   const [deviceName, setDeviceName] = useState("");
   const [deviceType, setDeviceType] = useState("");
+  const [HelperTextVisible, setHelperTextVisible] = useState(false);
 
- 
   const refreshDevicesList = (navigation) => {
     // Use setParams to trigger a refresh of the devices list
     navigation.setParams({ refresh: true });
@@ -29,6 +29,7 @@ export default function AddDeviceScreen({ navigation }) {
   //   }, []);
 
   function onAddDevice() {
+    setHelperTextVisible(false);
     addDevice(deviceName, deviceType, "off")
       .then(() => {
         console.log("Device added successfully");
@@ -37,6 +38,8 @@ export default function AddDeviceScreen({ navigation }) {
         console.error("Error adding device:", error);
       });
   }
+
+  console.log(HelperTextVisible);
 
   return (
     <BackScreen>
@@ -51,6 +54,7 @@ export default function AddDeviceScreen({ navigation }) {
           label="Device name"
           onChange={(deviceName) => setDeviceName(deviceName)}
           value={deviceName}
+          required={true}
         ></EditingInput>
         <EditingInput
           label="Device type"
@@ -58,10 +62,13 @@ export default function AddDeviceScreen({ navigation }) {
           value={deviceType}
         ></EditingInput>
         <Pressable
+          disabled={deviceName == ""}
           style={styles.addButton}
           onPress={() => {
-            onAddDevice();
-            navigation.navigate("DevicesList", { refreshDevicesList });
+            if (deviceName != "") {
+              onAddDevice();
+              navigation.navigate("DevicesList", { refreshDevicesList });
+            }
           }}
         >
           <Text style={styles.addButtonText}>Add device</Text>

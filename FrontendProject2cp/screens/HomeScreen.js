@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  LogBox,
 } from "react-native";
 import { useFonts } from "expo-font";
 import BackScreen from "../components/BackScreen";
@@ -19,6 +20,8 @@ export default function HomeScreen({ navigation }) {
   const { isDarkMode } = useTheme();
   const [fontsLoaded] = useFonts(Fonts);
   const [devices, setDevices] = useState([]);
+  //LogBox.ignoreAllLogs()
+  //console.ignoredYellowBox = ["Warning: Each", "Warning: Failed"];
 
   init()
     .then(() => {
@@ -79,8 +82,8 @@ export default function HomeScreen({ navigation }) {
       />
       <Text style={styles.deviceText}>
         {item.name !== "Add"
-          ? item.deviceName + " status: " + item.deviceStatus
-          : "add device"}
+          ? item.deviceName/* + " status: " + item.deviceStatus*/
+          : "Add device"}
       </Text>
     </TouchableOpacity>
   );
