@@ -84,10 +84,10 @@ export default function StartScreen({ navigation }) {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: darkBlue,
-          height: "25%",
+          height: "27%",
           width: "105%",
-          borderTopLeftRadius: 90,
-          borderTopRightRadius: 90,
+          borderTopLeftRadius: 75,
+          borderTopRightRadius: 75,
           paddingTop: 32,
           paddingBottom: "5%",
           gap: 25,
@@ -132,7 +132,7 @@ function NavButton({ navigation, item }) {
         borderWidth: 1.5,
         borderStyle: "solid",
         width: "66%",
-        height: 60,
+        height: 70,
         textAlign: "center",
         display: "flex",
         alignContent: "center",
@@ -149,9 +149,8 @@ function NavButton({ navigation, item }) {
       <Text
         style={{
           fontFamily: "MontserratBold",
-          fontSize: 18,
+          fontSize: 22,
           color: colors.white,
-          fontWeight: "regular",
         }}
       >
         {item.label}

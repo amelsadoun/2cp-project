@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Switch, Pressable, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  Switch,
+  Pressable,
+  ActivityIndicator,
+  LogBox,
+} from "react-native";
 import { useFonts } from "expo-font";
 import BackScreen from "../components/BackScreen";
 import Fonts from "../components/Fonts";
 import { colors } from "../assets/colors";
 import { deleteDevice, fetchDevices, updateDevice } from "../helpers";
-import { useTheme } from "react-native-paper";
+import { useTheme } from "../contexts/ThemeContext";
+// import { getIPAddress } from "../helpers/NetInfo";
+// import publicIP from 'react-native-public-ip';
 
 const DeviceInfoScreen = ({ navigation, route }) => {
   const [fontsLoaded] = useFonts(Fonts);
@@ -13,6 +22,16 @@ const DeviceInfoScreen = ({ navigation, route }) => {
   const [device, setDevice] = useState();
   const [status, setStatus] = useState(device?.deviceStatus);
   const { isDarkMode } = useTheme();
+  //console.log(isDarkMode);
+  // publicIP()
+  //   .then(ip => {
+  //     console.log(ip);
+  //     // '47.122.71.234'
+  //   })
+  //   .catch(error => {
+  //     console.log(error);
+  //     // 'Unable to get IP address.'
+  //   });
 
   useEffect(() => {
     const fetchAndSetDevices = async () => {
@@ -33,17 +52,20 @@ const DeviceInfoScreen = ({ navigation, route }) => {
     fetchAndSetDevices();
   }, []);
 
+  LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+  LogBox.ignoreAllLogs(); //Ignore all log notifications
+
   const toggleSwitch = async () => {
     const newStatus = status === "On" ? "Off" : "On";
     setStatus(newStatus); // Update status immediately
-    console.log(newStatus);
+   // console.log(newStatus);
     let a = newStatus === "On" ? "True" : "False";
-    fetch("http://192.168.222.254:80/change_etat", {
+    // console.log("ip adress: " + getIPAddress());
+    fetch("http://192.168.29.254:80/change_etat", {
       method: "POST",
       body: a,
-    })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+    }).then((response) => console.log(response));
+    // .catch((error) => console.log(error));
     await updateDevice(
       device.deviceName,
       device.deviceType,
@@ -113,7 +135,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             <Text
               style={{
                 fontFamily: "MontserratBold",
-                color: device?.deviceStatus === "On" ? "green" : "black",
+                color: "green",
                 fontSize: 20,
               }}
             >
@@ -136,7 +158,13 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             justifyContent: "center",
           }}
         >
-          <Text style={{ fontFamily: "MontserratSemiBold", fontSize: 20 }}>
+          <Text
+            style={{
+              fontFamily: "MontserratSemiBold",
+              fontSize: 20,
+              color: isDarkMode ? colors.white : "black",
+            }}
+          >
             remove
           </Text>
         </Pressable>

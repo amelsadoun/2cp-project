@@ -54,6 +54,7 @@ export default function HomeScreen({ navigation }) {
   const onAddDevice = () => {
     navigation.navigate("Add device screen");
   };
+  // console.log(devices)
 
   if (!fontsLoaded || !devices) {
     return <ActivityIndicator />;
@@ -82,7 +83,7 @@ export default function HomeScreen({ navigation }) {
       />
       <Text style={styles.deviceText}>
         {item.name !== "Add"
-          ? item.deviceName/* + " status: " + item.deviceStatus*/
+          ? item.deviceName /* + " status: " + item.deviceStatus*/
           : "Add device"}
       </Text>
     </TouchableOpacity>
@@ -135,7 +136,6 @@ const styles = {
     fontSize: 18,
     fontFamily: "MontserratMedium",
     marginVertical: 4,
-
   },
   listHeader: {
     fontFamily: "MontserratSemiBold",

@@ -17,9 +17,9 @@ const white = "#FEFEFF";
 const darkBlue = "#2F4062";
 const yellow = "#F3F0A6";
 const images = {
-  image1: require("../assets/first start page.png"),
-  image2: require("../assets/second start page.png"),
-  image3: require("../assets/third start page.png"),
+  image1: require("../assets/first_start_page.png"),
+  image2: require("../assets/second_start_page.png"),
+  image3: require("../assets/third_start_page.png"),
 };
 
 export default function CarouselCardItem({
@@ -70,7 +70,6 @@ export default function CarouselCardItem({
         }}
         onLoadEnd={() => setIsLoading(false)} // Set isLoading to false when image loading is complete
       />
-      {console.log("image: "+imageSource)}
       <Text
         style={{
           textAlign: "center",

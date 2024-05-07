@@ -76,21 +76,12 @@ export default function SettingsScreen({ navigation }) {
           navigation={navigation}
           isDarkMode={isDarkMode}
         />
-        {isUserMode ? (
-          <SecondButton
-            title="Log out"
-            route=""
-            navigation={navigation}
-            isDarkMode={isDarkMode}
-          />
-        ) : (
-          <SecondButton
-            title="Remove app data"
-            route="Signup screen"
-            navigation={navigation}
-            isDarkMode={isDarkMode}
-          />
-        )}
+        {/* <SecondButton
+          title="Remove app data"
+          route="Signup screen"
+          navigation={navigation}
+          isDarkMode={isDarkMode}
+        /> */}
       </View>
     </BackScreen>
   );

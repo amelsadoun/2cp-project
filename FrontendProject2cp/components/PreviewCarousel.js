@@ -55,6 +55,7 @@ const PreviewCarousel = ({ navigation }) => {
         layout="stack"
         layoutCardOffset={20}
         inactiveSlideOpacity={0}
+        scrollEnabled={false}
         ref={isCarousel}
         data={data}
         renderItem={({ item, index }) => (
@@ -69,8 +70,8 @@ const PreviewCarousel = ({ navigation }) => {
         itemWidth={ITEM_WIDTH}
         sliderHeight={screenHeight}
         onSnapToItem={(index) => setIndex(index)}
-        useScrollView={false}
         activeAnimationType="spring"
+        //inactiveSlideScale={0}
       />
       <Pagination
         dotsLength={data.length}
@@ -102,6 +103,7 @@ const PreviewCarousel = ({ navigation }) => {
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
         tappableDots={true}
+        inactiveSlideOpacity={"0%"}
       />
     </View>
   );

@@ -1,4 +1,4 @@
-import { SafeAreaView, Pressable, Text } from "react-native";
+import { SafeAreaView, Pressable, Text, LogBox } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 const white = "#FEFEFF";
 const darkBlue = "#2F4062";
@@ -13,7 +13,8 @@ export default function PreviewScreen({ navigation }) {
   if (!fontsLoaded) {
     return <ActivityIndicator />;
   }
-
+  LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+  LogBox.ignoreAllLogs(); //Ignore all log notifications
   return (
     <SafeAreaView
       style={{

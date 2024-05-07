@@ -17,19 +17,22 @@ export default function AuthentificationInput({
   return (
     <PaperProvider>
       <TextInput
-        mode="outlined"
+        mode="flat"
         style={{
           backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
           paddingHorizontal: 10,
           width: 300,
-          height: 50,
+          height: 70,
           justifyContent: "center",
+          color: colors.white
         }}
-        contentStyle={{}}
+        contentStyle={{
+          color: colors.white,
+        }}
         textColor={colors.white}
         activeOutlineColor={colors.yellow}
         outlineColor={colors.white}
-        placeholder={label}
+       // placeholder={label}
         label={label}
         placeholderTextColor={colors.white}
         outlineStyle={{
