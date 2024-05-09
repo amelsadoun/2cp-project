@@ -29,7 +29,7 @@ export default function CarouselCardItem({
   onPressNext,
 }) {
   const [isLoading, setIsLoading] = useState(true);
-
+console.log("preview carousel")
   const imageSource = images[item.imageKey];
   const handleButtonPress = () => {
     if (index < 2) {

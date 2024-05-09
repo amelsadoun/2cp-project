@@ -17,12 +17,12 @@ export default function AuthentificationInput({
   return (
     <PaperProvider>
       <TextInput
-        mode="flat"
+        mode="outlined"
         style={{
           backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
           paddingHorizontal: 10,
           width: 300,
-          height: 70,
+          height: 63,
           justifyContent: "center",
           color: colors.white
         }}

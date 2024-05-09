@@ -13,7 +13,7 @@ export default function SettingsScreen({ navigation }) {
   const { isDarkMode, toggleTheme } = useTheme();
   const { isUserMode } = useUserMode();
   const [fontsLoaded] = useFonts(Fonts);
-
+console.log("dark mode: "+isDarkMode)
   if (!fontsLoaded) {
     return <ActivityIndicator />;
   }

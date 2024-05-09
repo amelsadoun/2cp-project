@@ -39,7 +39,7 @@ export default function AddDeviceScreen({ navigation }) {
       });
   }
 
-  console.log(HelperTextVisible);
+  //console.log(HelperTextVisible);
 
   return (
     <BackScreen>
