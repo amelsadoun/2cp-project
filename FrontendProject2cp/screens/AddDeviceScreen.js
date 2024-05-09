@@ -50,12 +50,37 @@ export default function AddDeviceScreen({ navigation }) {
           backgroundColor: isDarkMode ? colors.darkerBlue : colors.darkBlue,
         }}
       >
+        <Text
+          style={{
+            color: colors.white,
+            textAlign: "left",
+            alignSelf: "flex-start",
+            marginLeft: 20,
+            fontFamily: "MontserratSemiBold",
+            fontSize: 15,
+          }}
+        >
+          Device name
+        </Text>
         <EditingInput
           label="Device name"
           onChange={(deviceName) => setDeviceName(deviceName)}
           value={deviceName}
           required={true}
         ></EditingInput>
+        <Text
+          style={{
+            color: colors.white,
+            textAlign: "left",
+            alignSelf: "flex-start",
+            marginLeft: 20,
+            fontFamily: "MontserratSemiBold",
+            fontSize: 15,
+            marginTop: 12
+          }}
+        >
+          Device description
+        </Text>
         <EditingInput
           label="Device type"
           onChange={(deviceType) => setDeviceType(deviceType)}
@@ -92,7 +117,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 80,
     borderTopRightRadius: 80,
     width: "100%",
-    height: 270,
+    height: 350,
     padding: 30,
     alignSelf: "center",
     position: "absolute",

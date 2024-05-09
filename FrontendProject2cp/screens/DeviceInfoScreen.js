@@ -58,13 +58,15 @@ const DeviceInfoScreen = ({ navigation, route }) => {
   const toggleSwitch = async () => {
     const newStatus = status === "On" ? "Off" : "On";
     setStatus(newStatus); // Update status immediately
-   // console.log(newStatus);
+    // console.log(newStatus);
     let a = newStatus === "On" ? "True" : "False";
+    let d = a + device.id;
+    console.log(d);
     // console.log("ip adress: " + getIPAddress());
     fetch("http://192.168.29.254:80/change_etat", {
       method: "POST",
-      body: a,
-    }).then((response) => console.log(response));
+      body: d,
+    }).then((response) => {});
     // .catch((error) => console.log(error));
     await updateDevice(
       device.deviceName,
@@ -82,7 +84,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
       });
     // console.log("device: " + device?.deviceStatus + " newStatus: " + newStatus + " status: " + status);
   };
-
+// console.log(device?.deviceId)
   if (!fontsLoaded || !device) {
     return <ActivityIndicator />;
   }

@@ -27,7 +27,7 @@ export default function AuthentificationInput({
   return (
     <PaperProvider>
       <TextInput
-        mode="outlined"
+        mode="flat"
         style={{
           backgroundColor: darkBlue,
           paddingHorizontal: 10,
