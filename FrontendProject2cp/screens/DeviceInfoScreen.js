@@ -152,7 +152,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
                 textAlign: "center",
               }}
             >
-              Description: {device.deviceType===""?"No description provided":device.description}
+              Description: {device.deviceType===""?"No description provided":device.deviceType}
             </Text>
         </View>
         <Pressable
