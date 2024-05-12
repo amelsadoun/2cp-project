@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { PaperProvider, TextInput } from "react-native-paper";
+import { PaperProvider } from "react-native-paper";
 import {
   Pressable,
   ScrollView,
   Text,
   View,
   ImageBackground,
+  TextInput,
 } from "react-native";
 import { useFonts } from "expo-font";
 import Logo from "../icons/Logo";
@@ -25,7 +26,6 @@ export default function AuthentificationInput({
   const [fontsLoaded] = useFonts(Fonts);
 
   return (
-    <PaperProvider>
       <TextInput
         mode="flat"
         style={{
@@ -49,6 +49,5 @@ export default function AuthentificationInput({
         onChangeText={onChange}
         right={<TextInput.Icon icon={icon} color={white} />}
       />
-    </PaperProvider>
   );
 }
