@@ -84,7 +84,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
       });
     // console.log("device: " + device?.deviceStatus + " newStatus: " + newStatus + " status: " + status);
   };
-// console.log(device?.deviceId)
+  // console.log(device?.deviceId)
   if (!fontsLoaded || !device) {
     return <ActivityIndicator />;
   }
@@ -145,16 +145,18 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             </Text>
           </View>
           <Text
-              style={{
-                fontFamily: "MontserratRegular",
-                fontSize: 20,
-                color: isDarkMode ? colors.white : "black",
-                textAlign: "center",
-              }}
-            >
-              Description: {device.deviceType===""?"No description provided":device.deviceType}
-            </Text>
-
+            style={{
+              fontFamily: "MontserratRegular",
+              fontSize: 20,
+              color: isDarkMode ? colors.white : "black",
+              textAlign: "center",
+            }}
+          >
+            Description:{" "}
+            {device.deviceType === ""
+              ? "No description provided"
+              : device.deviceType}
+          </Text>
         </View>
         <Pressable
           onPress={() => {
