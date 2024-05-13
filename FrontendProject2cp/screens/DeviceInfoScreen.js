@@ -144,7 +144,6 @@ const DeviceInfoScreen = ({ navigation, route }) => {
               {status === "On" ? " on" : " off"}
             </Text>
           </View>
-
           <Text
               style={{
                 fontFamily: "MontserratRegular",
@@ -155,6 +154,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             >
               Description: {device.deviceType===""?"No description provided":device.deviceType}
             </Text>
+
         </View>
         <Pressable
           onPress={() => {
