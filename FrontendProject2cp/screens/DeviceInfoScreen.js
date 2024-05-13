@@ -145,6 +145,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             </Text>
           </View>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Text
               style={{
                 fontFamily: "MontserratRegular",
@@ -155,6 +156,8 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             >
               Description: {device.deviceType===""?"No description provided":device.deviceType}
             </Text>
+=======
+>>>>>>> parent of 05109752 (finalised)
 =======
 >>>>>>> parent of 05109752 (finalised)
         </View>
