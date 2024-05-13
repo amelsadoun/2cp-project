@@ -54,9 +54,9 @@ export default function HomeScreen({ navigation }) {
   const onAddDevice = () => {
     navigation.navigate("Add device screen");
   };
-  // console.log(devices)
+   //console.log(devices)
 
-  if (!fontsLoaded || !devices) {
+   if (!fontsLoaded || !devices) {
     return <ActivityIndicator />;
   }
 

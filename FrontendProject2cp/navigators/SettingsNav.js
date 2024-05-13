@@ -15,14 +15,6 @@ export default function SettingsNav() {
     >
       <ThirdStack.Screen name="Settings screen" component={SettingsScreen} />
       <ThirdStack.Screen name="FAQ screen" component={FAQScreen} />
-      <ThirdStack.Screen
-        name="Edit Profile screen"
-        component={EditProfileScreen}
-      />
-      <ThirdStack.Screen
-        name="Change Password screen"
-        component={ChangePasswordScreen}
-      />
     </ThirdStack.Navigator>
   );
 }
