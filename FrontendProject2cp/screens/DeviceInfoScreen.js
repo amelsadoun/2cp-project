@@ -144,6 +144,7 @@ const DeviceInfoScreen = ({ navigation, route }) => {
               {status === "On" ? " on" : " off"}
             </Text>
           </View>
+<<<<<<< HEAD
           <Text
               style={{
                 fontFamily: "MontserratRegular",
@@ -154,6 +155,8 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             >
               Description: {device.deviceType===""?"No description provided":device.deviceType}
             </Text>
+=======
+>>>>>>> parent of 05109752 (finalised)
         </View>
         <Pressable
           onPress={() => {
@@ -168,15 +171,13 @@ const DeviceInfoScreen = ({ navigation, route }) => {
             alignItems: "center",
             alignContent: "center",
             justifyContent: "center",
-            paddingBottom: 15,
           }}
         >
           <Text
             style={{
               fontFamily: "MontserratSemiBold",
               fontSize: 20,
-              color: colors.white,
-              alignSelf: "center"
+              color: isDarkMode ? colors.white : "black",
             }}
           >
             remove

@@ -82,7 +82,7 @@ export default function AddDeviceScreen({ navigation }) {
           Device description
         </Text>
         <EditingInput
-          label="Device description"
+          label="Device type"
           onChange={(deviceType) => setDeviceType(deviceType)}
           value={deviceType}
         ></EditingInput>
