@@ -4,7 +4,7 @@ import PreviewNav from "./navigators/PreviewNav";
 import { NavigationContainer } from "@react-navigation/native";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { UserProvider } from "./contexts/UserContext";
-const appUsedBefore = false;
+const appUsedBefore = true;
 
 export default function App() {
   return (
